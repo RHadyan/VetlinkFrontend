@@ -108,7 +108,6 @@ import { useAuth } from "../../composable/Auth"; // Adjust the path to where you
 export default {
   setup() {
     const route = useRoute();
-    const router = useRouter();
     const { logout } = useAuth(); // Import the logout function
 
     // Function to check if the current route is active
