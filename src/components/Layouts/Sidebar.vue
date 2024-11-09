@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { useAuth } from "../../composable/Auth"; // Adjust the path to where your Auth.js file is located
 
 export default {

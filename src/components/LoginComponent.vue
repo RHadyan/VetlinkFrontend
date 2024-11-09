@@ -43,7 +43,7 @@
 
 <script>
 import { useAuth } from "@/composable/Auth.js";
-import { ref, onBeforeMount } from "vue";
+import { onBeforeMount } from "vue";
 
 export default {
   setup() {

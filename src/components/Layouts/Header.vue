@@ -4,14 +4,21 @@
     <div class="w-1/2"></div>
     <div class="relative w-1/2 gap-2 flex justify-end">
       <div class="gap-y-1 justify-center items-center">
-        <p class="font-semibold text-s" style="font-family: 'Poppins'">
-          Ghaniyy Ramadhan
+        <!-- Spinner Loading jika profile belum siap -->
+        <div v-if="loading" class="blurred-text">Loading............</div>
+        
+        <!-- Data profile jika sudah siap -->
+        <p v-else class="font-semibold text-s" style="font-family: 'Poppins'">
+          {{ profile.name }}
         </p>
+
+        <div v-if="loading" class="blurred-text">Loading...</div>
         <p
+        v-else
           class="font-normal flex justify-end text-s"
           style="font-family: 'Poppins'"
         >
-          Admin
+          {{ profile.role }}
         </p>
       </div>
       <button
@@ -56,12 +63,9 @@
       </router-link>
       <button @click="toggleMenu" class="text-blue text-3xl focus:outline-none">
         <i v-if="!isOpen" class="fas fa-bars"></i>
-        <!-- Icon hamburger -->
         <i v-else class="fas fa-times"></i>
-        <!-- Icon close -->
       </button>
     </div>
-
     <!-- Dropdown Nav yang muncul saat menu dibuka di layar kecil -->
     <nav :class="isOpen ? 'flex flex-col' : 'hidden'" class="pt-4">
       <router-link
@@ -90,17 +94,32 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useProfile } from "@/composable/profile";
 
 export default {
   setup() {
     const isOpen = ref(false);
+    const loading = ref(true);
 
     const toggleMenu = () => {
       isOpen.value = !isOpen.value;
     };
 
+    // Mengambil variabel reaktif dari useProfile composable
+    const { profile, error, getProfile } = useProfile();
+
+    // Mendapatkan data profil saat komponen di-mount
+    onMounted(async () => {
+      loading.value = true; // Set loading ke true ketika mulai memuat data
+      await getProfile();
+      loading.value = false; // Set loading ke false ketika data selesai dimuat
+    });
+
     return {
+      profile,
+      error,
+      loading,
       isOpen,
       toggleMenu,
     };
@@ -108,7 +127,30 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+/* CSS untuk spinner loading */
+
+.blurred-text {
+  filter: blur(5px);
+  color: #ccc;
+}
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border-left-color: #09f;
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /* Media query untuk layar besar */
 @media (min-width: 640px) {
