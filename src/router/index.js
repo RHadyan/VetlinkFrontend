@@ -31,6 +31,11 @@ const router = createRouter({
       component: () => import("../views/Admin/Hospital.vue"),
       meta: { requiresAuth: true },
     },
+    {
+      path: "/register",
+      name: "Register",
+      component: () => import("../views/User/Register.vue"),
+    },
   ],
 });
 
