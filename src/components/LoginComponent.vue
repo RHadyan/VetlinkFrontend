@@ -40,8 +40,8 @@
               placeholder="Password"
             />
           </div>
-          <div class="flex space-x-32">
-            <div>
+          <div class="grid md:grid-cols-2 grid-cols-1 gap-4">
+            <div class="flex md:justify-start sm:justify-center">
               <button
                 type="submit"
                 class="w-32 h-11 text-xl font-semibold text-white bg-[#FFA33C] rounded-full hover:bg-[#B08BBB] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
@@ -49,7 +49,7 @@
                 Login
               </button>
             </div>
-            <div>
+            <div class="flex md:justify-end sm:justify-center">
               <button
                 type="submit"
                 class="w-32 h-11 text-xl font-semibold text-[#FFA33C] bg-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 border-[#FFA33C] border-4 focus:ring-opacity-50"

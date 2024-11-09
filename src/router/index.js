@@ -34,9 +34,14 @@ const router = createRouter({
     {
       path: "/register",
       name: "Register",
-      component: () => import("../views/User/Register.vue")
+      component: () => import("../views/User/Register.vue"),
+    },
+    {
+      path: "/detailpost",
+      name: "Detail Post",
+      component: () => import("../views/Admin/DetailPost.vue")
     }
-  ]
+  ],
 });
 
 // Router guard to check for authentication before accessing routes that require it
