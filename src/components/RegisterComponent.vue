@@ -18,12 +18,12 @@
           </div>
         </div>
 
-        <!-- Form Login -->
-        <form class="space-y-6 w-full max-w-sm">
+        <!-- Form Register -->
+        <form @submit.prevent="register" class="space-y-6 w-full max-w-sm">
           <div>
             <input
               type="text"
-              id="identifier"
+              v-model="name"
               required
               class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Full Name"
@@ -32,7 +32,7 @@
           <div>
             <input
               type="text"
-              id="identifier"
+              v-model="email"
               required
               class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Email"
@@ -41,7 +41,7 @@
           <div>
             <input
               type="text"
-              id="identifier"
+              v-model="phone"
               required
               class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Phone Number"
@@ -50,7 +50,7 @@
           <div>
             <input
               type="password"
-              id="password"
+              v-model="password"
               required
               class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Password"
@@ -65,6 +65,8 @@
               Register
             </button>
           </div>
+          <!-- Menampilkan pesan error jika ada -->
+          <p v-if="error" class="text-red-500">{{ error }}</p>
         </form>
       </div>
 
@@ -81,3 +83,27 @@
     </div>
   </div>
 </template>
+
+<script>
+import { useRegister } from "@/composable/register";
+
+export default {
+  setup() {
+    // Menggunakan composable register
+    const { name, email, phone, password, error, register } = useRegister();
+
+    return {
+      name,
+      email,
+      phone,
+      password,
+      error,
+      register,
+    };
+  },
+};
+</script>
+
+<style scoped>
+/* Tambahkan CSS sesuai kebutuhan Anda */
+</style>

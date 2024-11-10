@@ -50,12 +50,12 @@
               </button>
             </div>
             <div class="flex md:justify-end sm:justify-center">
-              <button
+              <router-link to="/register"
                 type="submit"
                 class="w-32 h-11 text-xl font-semibold text-[#FFA33C] bg-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 border-[#FFA33C] border-4 focus:ring-opacity-50"
               >
                 Register
-              </button>
+              </router-link>
             </div>
           </div>
           <p v-if="error" class="text-sm text-center text-red-500">
