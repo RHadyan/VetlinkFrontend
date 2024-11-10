@@ -32,6 +32,15 @@
           <div>
             <input
               type="text"
+              v-model="username"
+              required
+              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Username"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
               v-model="email"
               required
               class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
@@ -45,6 +54,69 @@
               required
               class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Phone Number"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              v-model="clinic_name"
+              required
+              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Nama Klinik"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              v-model="latitude"
+              required
+              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Latitude Klinik"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              v-model="longitude"
+              required
+              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Longitude Klinik"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              v-model="city"
+              required
+              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Kota Tempat Klinik Berada"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              v-model="address"
+              required
+              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Alamat Klinik"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              v-model="open_time"
+              required
+              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Jam Buka Klinik"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              v-model="close_time"
+              required
+              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Jam tutup Klinik"
             />
           </div>
           <div>
@@ -90,12 +162,35 @@ import { useRegister } from "@/composable/register";
 export default {
   setup() {
     // Menggunakan composable register
-    const { name, email, phone, password, error, register } = useRegister();
+    const {
+      name,
+      username,
+      email,
+      phone,
+      clinic_name,
+      latitude,
+      longitude,
+      city,
+      address,
+      open_time,
+      close_time,
+      password,
+      error,
+      register,
+    } = useRegister();
 
     return {
       name,
+      username,
       email,
       phone,
+      clinic_name,
+      latitude,
+      longitude,
+      city,
+      address,
+      open_time,
+      close_time,
       password,
       error,
       register,
