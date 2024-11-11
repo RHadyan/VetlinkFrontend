@@ -15,7 +15,7 @@ import Headers from "@/components/Layouts/Header.vue";
       <Headers />
 
       <!-- Scrollable Dashboard -->
-      <div class="flex-1 overflow-y-auto items-center justify-center flex p-4">
+      <div class="flex-1 overflow-y-auto justify-center flex p-4">
         <DashboardComponent />
       </div>
     </div>
@@ -24,6 +24,6 @@ import Headers from "@/components/Layouts/Header.vue";
 
 <style scoped>
 .font-family-poppins {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 </style>
