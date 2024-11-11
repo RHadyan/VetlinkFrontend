@@ -1,6 +1,6 @@
 <template>
   <!-- Header untuk layar besar (desktop) -->
-  <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
+  <header class="w-full items-center bg-white py-2 px-6 hidden md:flex">
     <div class="w-1/2"></div>
     <div class="relative w-1/2 gap-2 flex justify-end">
       <div class="gap-y-1 justify-center items-center">
@@ -53,7 +53,7 @@
   </header>
 
   <!-- Header untuk layar kecil (mobile) -->
-  <header class="w-full bg-sidebar py-5 px-6 sm:hidden">
+  <header class="w-full bg-sidebar py-5 px-6 md:hidden">
     <div class="flex items-center justify-between">
       <router-link
         to="/"
@@ -154,14 +154,14 @@ export default {
 
 /* Media query untuk layar besar */
 @media (min-width: 640px) {
-  .sm\\:hidden {
+  .md\\:hidden {
     display: none !important;
   }
 }
 
 /* Media query untuk layar kecil */
 @media (max-width: 639px) {
-  .sm\\:hidden {
+  .md\\:hidden {
     display: block !important;
   }
 }

@@ -52,7 +52,7 @@
             <div class="flex md:justify-end sm:justify-center">
               <router-link to="/register"
                 type="submit"
-                class="w-32 h-11 text-xl font-semibold text-[#FFA33C] bg-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 border-[#FFA33C] border-4 focus:ring-opacity-50"
+                class="w-32 h-11 text-xl text-center font-semibold text-[#FFA33C] bg-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 border-[#FFA33C] border-4 focus:ring-opacity-50"
               >
                 Register
               </router-link>

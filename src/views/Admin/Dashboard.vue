@@ -5,21 +5,25 @@ import Headers from "@/components/Layouts/Header.vue";
 </script>
 
 <template>
-  <body class="body font-family-karla flex">
+  <div class="flex h-screen font-family-poppins">
+    <!-- Sidebar -->
     <Sidebar />
-    <!-- sidebar -->
-    <div class="w-full flex flex-col h-screen overflow-y-hidden bg-[#F6F6F6]">
-      <!-- headbar -->
+
+    <!-- Main content area -->
+    <div class="flex flex-col flex-1 h-full overflow-hidden bg-[#F6F6F6]">
+      <!-- Header -->
       <Headers />
-      <div class="w-full flex items-center flex-col px-2 gap-y-7 mt-5">
-        <!-- dasbor -->
+
+      <!-- Scrollable Dashboard -->
+      <div class="flex-1 overflow-y-auto items-center justify-center flex p-4">
         <DashboardComponent />
       </div>
     </div>
-  </body>
+  </div>
 </template>
 
-
-<script>
-
-</script>
+<style scoped>
+.font-family-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+</style>
