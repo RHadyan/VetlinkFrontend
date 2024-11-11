@@ -1,22 +1,22 @@
 <template>
   <aside class="relative bg-sidebar h-screen w-80 hidden sm:block shadow-xl">
-    <div class="p-6">
+    <div class="p-2 justify-center flex">
       <a
         href="index.html"
         class="text-white text-3xl font-semibold uppercase hover:text-gray-300"
       >
-        <img src="@/assets/images/logo.png" alt="" />
+        <img src="@/assets/images/logo.png" alt="" class="w-64" />
       </a>
     </div>
 
-    <nav class="text-white text-base flex flex-col font-semibold pt-3">
+    <nav class="text-white text-base flex flex-col font-semibold">
       <router-link
         to="/"
-        class="flex m-3 gap-2 rounded-lg items-center text-gray-500 py-4 pl-4 nav-item transition duration-300 ease-in-out"
+        class="flex mx-3 my-2 gap-2 rounded-lg items-center text-gray-500 py-3 pl-5 nav-item transition duration-300 ease-in-out"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
+          width="22"
           height="28"
           viewBox="0 0 28 28"
           fill="none"
@@ -33,13 +33,14 @@
         </svg>
         Dashboard
       </router-link>
+
       <router-link
         to="/hospital"
-        class="mt-5 m-3 gap-2 rounded-lg flex items-center text-gray-500 py-4 pl-4 nav-item transition duration-300 ease-in-out"
+        class="mx-3 my-2 gap-2 rounded-lg flex items-center text-gray-500 py-3 pl-5 nav-item transition duration-300 ease-in-out"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
+          width="22"
           height="28"
           viewBox="0 0 28 28"
           fill="none"
@@ -56,13 +57,14 @@
         </svg>
         Hospital
       </router-link>
+
       <router-link
         to="/forum"
-        class="mt-5 m-3 gap-2 rounded-lg flex items-center text-gray-500 py-4 pl-4 nav-item transition duration-300 ease-in-out"
+        class="mx-3 my-2 gap-2 rounded-lg flex items-center text-gray-500 py-3 pl-5 nav-item transition duration-300 ease-in-out"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="28"
+          width="22"
           height="28"
           viewBox="0 0 28 28"
           fill="none"
@@ -79,8 +81,8 @@
         </svg>
         Forum
       </router-link>
-
-      <button @click="handleLogout" class="justify-items-center">
+      
+      <button @click="handleLogout" class="my-5 justify-items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="134"
@@ -97,7 +99,9 @@
           />
         </svg>
       </button>
+
     </nav>
+
   </aside>
 </template>
 
