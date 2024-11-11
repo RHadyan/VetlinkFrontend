@@ -1,5 +1,5 @@
 <template>
-  <div class="items-center justify-center max-h-screen space-y-2 bg-gray-100">
+  <div class="max-h-screen space-y-2 bg-gray-100">
     <div class="flex justify-center items-center">
       <div class="flex">
         <img

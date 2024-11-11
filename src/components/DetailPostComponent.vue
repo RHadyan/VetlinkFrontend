@@ -21,6 +21,7 @@
           </svg>
         </button>
       </div>
+      
       <div class="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-4">
         <div
           style="max-width: 550px; max-height: 550px; overflow: hidden"

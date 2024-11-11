@@ -5,16 +5,22 @@ import Headers from "@/components/Layouts/Header.vue";
 </script>
 
 <template>
-  <body class="body font-family-karla flex">
+  <body class="flex h-screen font-family-poppins">
     <Sidebar/>
     <!-- sidebar -->
-    <div class="w-full flex flex-col h-screen overflow-y-hidden bg-[#F6F6F6]">
+    <div class="flex flex-col flex-1 h-full overflow-hidden bg-[#F6F6F6]">
       <!-- headbar -->
        <Headers/>
-      <div class="w-full flex items-center flex-col px-2 gap-y-7 mt-5">
+      <div class="w-full flex overflow-y-auto overflow-hidden items-center flex-col ">
         <!-- dasbor -->
          <ForumComponent/>
       </div>
     </div>
   </body>
 </template>
+
+<style scoped>
+.font-family-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+</style>
