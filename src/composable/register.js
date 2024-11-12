@@ -17,28 +17,46 @@ export function useRegister() {
   const close_time = ref("");
   const password = ref("");
   const role = ref("veteriner");
+  const clinic_image = ref(null); // Add clinic image field
+  const document_file = ref(null); // Add document file field
   const error = ref(null);
 
   // Fungsi register
   const register = async () => {
     error.value = null; // Menghapus error sebelumnya jika ada
     try {
+      // Membuat objek form data untuk mengirim file
+      const formData = new FormData();
+      formData.append("role", role.value);
+      formData.append("name", name.value);
+      formData.append("username", username.value);
+      formData.append("email", email.value);
+      formData.append("phone", phone.value);
+      formData.append("clinic_name", clinic_name.value);
+      formData.append("latitude", latitude.value);
+      formData.append("longitude", longitude.value);
+      formData.append("city", city.value);
+      formData.append("address", address.value);
+      formData.append("open_time", open_time.value);
+      formData.append("close_time", close_time.value);
+      formData.append("password", password.value);
+      if (clinic_image.value) {
+        formData.append("clinic_image", clinic_image.value);
+      }
+      if (document_file.value) {
+        formData.append("document_file", document_file.value);
+      }
+
       // Mengirimkan data registrasi ke API menggunakan POST request
-      const response = await axios.post("http://localhost:8000/api/register", {
-        role: role.value,
-        name: name.value,
-        username: username.value,
-        email: email.value,
-        phone: phone.value,
-        clinic_name: clinic_name.value,
-        latitude: latitude.value,
-        longitude: longitude.value,
-        city: city.value,
-        address: address.value,
-        open_time: open_time.value,
-        close_time: close_time.value,
-        password: password.value,
-      });
+      const response = await axios.post(
+        "http://localhost:8000/api/register",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       // Jika berhasil, arahkan ke halaman login atau dashboard
       if (response.status === 201) {
@@ -67,6 +85,8 @@ export function useRegister() {
     open_time,
     close_time,
     password,
+    clinic_image,
+    document_file,
     error,
     register,
   };

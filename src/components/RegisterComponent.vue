@@ -112,7 +112,7 @@
               </p>
             </div>
 
-            <button onclick="getPreciseLocation()">
+            <button @click="getPreciseLocation">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="121"
@@ -139,10 +139,28 @@
               </svg>
             </button>
 
-            <div class="text-white">
-              <p>Latitude:</p>
-              <p>Longitude:</p>
-            </div>
+            <!-- <div class="text-white">
+              <p>Latitude: {{ latitude }}</p>
+              <p>Longitude: {{ longitude }}</p>
+            </div> -->
+          </div>
+          <div>
+            <input
+              type="text"
+              v-model="latitude"
+              required
+              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Klik Tombol untuk Mendapatkan Latitude"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              v-model="longitude"
+              required
+              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Klik Tombol untuk Mendapatkan Longitude"
+            />
           </div>
 
           <div>
@@ -285,11 +303,12 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import { useRegister } from "@/composable/register";
 
 export default {
   setup() {
-    // Menggunakan composable register
+    // Use the composable `useRegister`
     const {
       name,
       username,
@@ -303,9 +322,28 @@ export default {
       open_time,
       close_time,
       password,
+      clinic_image,
+      document_file,
       error,
       register,
     } = useRegister();
+
+    // Define the method to get the precise location and set the latitude and longitude
+    const getPreciseLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            latitude.value = position.coords.latitude;
+            longitude.value = position.coords.longitude;
+          },
+          (error) => {
+            console.error("Error occurred while getting location:", error);
+          }
+        );
+      } else {
+        console.error("Geolocation is not supported by this browser.");
+      }
+    };
 
     return {
       name,
@@ -320,8 +358,11 @@ export default {
       open_time,
       close_time,
       password,
+      clinic_image,
+      document_file,
       error,
       register,
+      getPreciseLocation, // Return the method so it can be used in the template
     };
   },
 };
