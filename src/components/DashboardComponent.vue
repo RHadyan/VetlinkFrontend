@@ -41,7 +41,7 @@
             class="lg:text-4xl sm:text-xl font-bold text-[#FFA33C]"
             style="font-family: 'Poppins', sans-serif"
           >
-            3
+            {{ approvedKlinik }}
           </p>
         </div>
       </div>
@@ -74,7 +74,7 @@
             class="lg:text-4xl sm:text-xl font-bold text-[#FFA33C]"
             style="font-family: 'Poppins', sans-serif"
           >
-            1
+            {{ pendingKlinik }}
           </p>
         </div>
       </div>
@@ -107,7 +107,7 @@
             class="lg:text-4xl sm:text-xl font-bold text-[#FFA33C]"
             style="font-family: 'Poppins', sans-serif"
           >
-            10
+            {{ jumlahforum}}
           </p>
         </div>
       </div>
@@ -140,10 +140,41 @@
             class="lg:text-4xl sm:text-xl font-bold text-[#FFA33C]"
             style="font-family: 'Poppins', sans-serif"
           >
-            4
+            {{ canceledKlinik }}
           </p>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import { useDashboard } from "@/composable/dasboard.js";
+
+export default {
+  setup() {
+    // Use the composable `useDashboard`
+    const {
+      jumlahforum,
+      veteriners,
+      jumlahKlinik,
+      pendingKlinik,
+      approvedKlinik,
+      canceledKlinik,
+      error,
+      fetchVeteriners,
+    } = useDashboard();
+
+    return {
+      jumlahforum,
+      veteriners,
+      jumlahKlinik,
+      pendingKlinik,
+      approvedKlinik,
+      canceledKlinik,
+      error,
+      fetchVeteriners,
+    };
+  },
+};
+</script>
