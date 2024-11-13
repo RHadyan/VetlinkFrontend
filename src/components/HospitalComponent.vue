@@ -73,12 +73,13 @@
                   <v-icon>mdi-trash-can-outline</v-icon>
                 </v-btn>
               </div>
+
             </template>
           </v-data-table>
 
           <!-- Loading state -->
           <div v-if="loading" class="text-center mt-4">
-            Loading data, please wait...
+            Loading data, please wait...1
           </div>
 
           <!-- Error state -->
