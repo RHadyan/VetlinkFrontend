@@ -42,9 +42,9 @@ const router = createRouter({
       component: () => import("../views/Admin/DetailKlinik.vue"),
     },
     {
-      path: "/detailpost",
-      name: "Detail Post",
-      component: () => import("../views/Admin/DetailPost.vue")
+      path: "/tes",
+      name: "tes",
+      component: () => import("../views/Admin/tes.vue")
     }
   ],
 });
