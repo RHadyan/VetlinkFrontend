@@ -37,13 +37,13 @@
         class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16"
       >
         <router-link
-          to="/account"
+          to=""
           class="block px-4 py-2 account-link hover:text-white"
         >
           Account
         </router-link>
         <router-link
-          to="/signout"
+          to=""
           class="block px-4 py-2 account-link hover:text-white"
         >
           Sign Out
