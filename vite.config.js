@@ -1,16 +1,19 @@
-import { fileURLToPath, URL } from 'node:url'
+// vite.config.js
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import vuetify from "vite-plugin-vuetify";
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    vue(), // Plugin Vue untuk mendukung komponen Vue
+    vuetify({
+      // Plugin Vuetify untuk mendukung Vuetify di dalam Vite
+      autoImport: true,
+    }),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
-})
+      "@": "/src", // Alias untuk src directory
+    },
+  },
+});

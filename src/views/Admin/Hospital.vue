@@ -1,5 +1,6 @@
 <script setup>
 import HospitalComponent from "@/components/HospitalComponent.vue";
+import tes from "./tes.vue";
 import Sidebar from "@/components/Layouts/Sidebar.vue";
 import Headers from "@/components/Layouts/Header.vue";
 </script>
