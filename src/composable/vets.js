@@ -49,9 +49,16 @@ export function useVets() {
   const deleteItem = async (item) => {
     if (confirm(`Are you sure you want to delete ${item.clinic_name}?`)) {
       try {
-        // Send DELETE request to API
+        const token = localStorage.getItem("authToken"); // Retrieve token from localStorage
+
+        // Send DELETE request with Authorization Bearer token
         await axios.delete(
-          `http://localhost:8000/api/admin/veteriners/${item.id}`
+          `http://localhost:8000/api/admin/veteriner/${item.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Include the token in the headers
+            },
+          }
         );
 
         // Remove item from the table if successful

@@ -28,7 +28,7 @@ export function useDashboard() {
           },
         }
       );const responseForums = await axios.get(
-        "http://localhost:8000/api/forums",
+        "http://localhost:8000/api/admin/forums",
         {
           headers: {
             Authorization: `Bearer ${token}`,
