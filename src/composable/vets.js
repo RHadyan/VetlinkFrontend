@@ -1,5 +1,6 @@
 import { ref, watch, onMounted } from "vue";
 import axios from "axios";
+import router from "../router";
 
 export function useVets() {
   const veteriners = ref([]);
@@ -10,6 +11,10 @@ export function useVets() {
   const sortBy = ref(["clinic_name"]); // Ubah menjadi array
   const sortDesc = ref(false);
   const error = ref(null);
+
+  // detail
+  const alamat = ref("");
+  const namaKlinik = ref("");
 
   const fetchVeteriners = async () => {
     loading.value = true;
@@ -26,7 +31,7 @@ export function useVets() {
           params: {
             page: currentPage.value,
             per_page: itemsPerPage.value,
-            sort_by: sortBy.value[0], // Ambil nilai pertama dari array untuk API
+            sort_by: sortBy.value[0],
             sort_desc: sortDesc.value,
           },
         }
@@ -66,11 +71,45 @@ export function useVets() {
         if (index > -1) {
           veteriners.value.splice(index, 1); // Remove item locally
         }
+        console.log(item.id);
         alert("Item deleted successfully!");
       } catch (err) {
         console.error("Failed to delete item:", err);
         alert("Failed to delete item. Please try again later.");
       }
+    }
+  };
+
+  const klinikDetail = async (item) => {
+    try {
+      const token = localStorage.getItem("authToken");
+
+      // Fetch detailed information about the clinic
+      const response = await axios.get(
+        `http://localhost:8000/api/admin/veteriner/${item.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const detail = response.data.data;
+
+      if (detail) {
+        router.push({
+          path: "/detailklinik",
+          query: {
+            namaKlinik: detail.clinic_name,
+            alamat: detail.address,
+            clinicImage: detail.clinic_image, // Pass clinic image path
+            document: detail.document_url, // Pass document URL
+          },
+        });
+      }
+    } catch (err) {
+      console.error("Failed to fetch clinic details:", err);
+      alert("Failed to fetch details. Please try again later.");
     }
   };
 
@@ -83,6 +122,8 @@ export function useVets() {
   });
 
   return {
+    alamat,
+    namaKlinik,
     veteriners,
     totalItems,
     loading,
@@ -91,6 +132,7 @@ export function useVets() {
     sortBy,
     sortDesc,
     deleteItem,
+    klinikDetail,
     fetchVeteriners,
     error,
   };

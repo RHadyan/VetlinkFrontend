@@ -6,7 +6,7 @@
       class="p-4 flex-col md:flex-row h-10/12 w-11/12 bg-white rounded-lg space-y-2 shadow-md"
     >
       <div class="items-center">
-        <button class="hover:bg-opacity-80 group">
+        <router-link to="/hospital" class="hover:bg-opacity-80 group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="70"
@@ -21,7 +21,7 @@
               class="fill-current text-[#FF004E] group-hover:text-[#B08BBB]"
             />
           </svg>
-        </button>
+        </router-link>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-4">
@@ -30,7 +30,7 @@
           class="rounded-xl"
         >
           <img
-            src="@/assets/images/klinik1.png"
+            :src="clinicImage"
             alt="Post Pict"
             style="width: 100%; height: 100%; object-fit: cover"
           />
@@ -63,7 +63,7 @@
               </svg>
             </div>
             <div>
-              <p class="font-normal text-base">Lo Veterinary Clinic</p>
+              <p class="font-normal text-base">{{ namaKlinik }}</p>
             </div>
           </div>
 
@@ -244,3 +244,31 @@
     </div>
   </div>
 </template>
+
+<script>
+import { ref } from "vue";
+import { useRoute } from "vue-router";
+
+export default {
+  setup() {
+    const route = useRoute();
+
+    // Retrieve query parameters
+    const namaKlinik = ref(route.query.namaKlinik || "Unknown Clinic");
+    const alamat = ref(route.query.alamat || "Unknown Address");
+    const clinicImage = ref(
+      route.query.clinicImage
+        ? `https://vetlink-image-url.com/${route.query.clinicImage}`
+        : "https://via.placeholder.com/800x400.png"
+    );
+    const document = ref(route.query.document || "");
+
+    return {
+      namaKlinik,
+      alamat,
+      clinicImage,
+      document,
+    };
+  },
+};
+</script>

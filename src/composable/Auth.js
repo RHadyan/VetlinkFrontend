@@ -28,7 +28,6 @@ export function useAuth() {
     localStorage.removeItem("authToken");
     router.push("/login");
   }
-  
 
   function checkAuth() {
     const token = localStorage.getItem("authToken");

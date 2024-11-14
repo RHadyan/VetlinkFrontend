@@ -21,6 +21,20 @@ export function useRegister() {
   const document_file = ref(null); // Add document file field
   const error = ref(null);
 
+  const handleClinicImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      clinic_image.value = file;
+    }
+  };
+
+  const handleDocumentFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      document_file.value = file;
+    }
+  };
+
   // Fungsi register
   const register = async () => {
     error.value = null; // Menghapus error sebelumnya jika ada
@@ -89,5 +103,7 @@ export function useRegister() {
     document_file,
     error,
     register,
+    handleClinicImageUpload,
+    handleDocumentFileUpload,
   };
 }

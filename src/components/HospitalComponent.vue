@@ -78,7 +78,7 @@
                     />
                   </svg>
                 </v-btn>
-                <v-btn variant="plain" icon text @click="navigateToDK">
+                <v-btn variant="plain" icon text @click="klinikDetail(item)">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="21"
@@ -132,6 +132,7 @@ export default {
       sortBy,
       sortDesc,
       deleteItem,
+      klinikDetail,
       fetchVeteriners,
       error,
     } = useVets();
@@ -171,6 +172,7 @@ export default {
       formatTime,
       headers,
       deleteItem,
+      klinikDetail,
       navigateToDK,
     };
   },
