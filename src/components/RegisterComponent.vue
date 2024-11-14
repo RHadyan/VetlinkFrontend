@@ -43,7 +43,7 @@
               type="text"
               v-model="name"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Nama Lengkap"
             />
           </div>
@@ -52,7 +52,7 @@
               type="text"
               v-model="username"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Nama Pengguna"
             />
           </div>
@@ -61,7 +61,7 @@
               type="text"
               v-model="email"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Email"
             />
           </div>
@@ -70,7 +70,7 @@
               type="text"
               v-model="phone"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Nomor Handphone"
             />
           </div>
@@ -79,7 +79,7 @@
               type="text"
               v-model="clinic_name"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Nama Klinik"
             />
           </div>
@@ -149,7 +149,7 @@
               type="text"
               v-model="latitude"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Klik Tombol untuk Mendapatkan Latitude"
             />
           </div>
@@ -158,7 +158,7 @@
               type="text"
               v-model="longitude"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Klik Tombol untuk Mendapatkan Longitude"
             />
           </div>
@@ -168,7 +168,7 @@
               type="text"
               v-model="city"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Kota Tempat Klinik Berada"
             />
           </div>
@@ -178,7 +178,7 @@
               type="text"
               v-model="address"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Alamat Klinik"
             />
           </div>
@@ -188,8 +188,8 @@
               type="text"
               v-model="open_time"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-              placeholder="Jam Buka Klinik"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Jam Buka Klinik (08:00)"
             />
           </div>
 
@@ -198,7 +198,7 @@
               type="text"
               v-model="close_time"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Jam tutup Klinik"
             />
           </div>
@@ -208,7 +208,7 @@
               type="password"
               v-model="password"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Password"
             />
           </div>
@@ -369,5 +369,5 @@ export default {
 </script>
 
 <style scoped>
-/* Tambahkan CSS sesuai kebutuhan Anda */
+
 </style>
