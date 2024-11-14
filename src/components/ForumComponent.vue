@@ -48,7 +48,7 @@
       </form>
 
       <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 overflow-hidden"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 overflow-hidden py-5" 
       >
         <!-- Card 1 -->
         <div class="rounded w-64 overflow-hidden shadow-lg bg-white">
@@ -83,15 +83,26 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="rounded w-64 overflow-hidden shadow-lg bg-white">
+        <div
+          class="rounded w-64 overflow-hidden shadow-md bg-white cursor-pointer transform transition-transform duration-300 hover:scale-105"
+          @click="navigateToDP"
+        >
           <img
             class="w-64 h-64 object-cover"
             src="@/assets/images/kucing.jpeg"
             alt="Foto Hewan Peliharaan"
           />
-          <div class="flex items-center justify-between m-3">
+          <div class="flex font-poppins items-center justify-between m-3">
             <div>
-              <p class="text-gray-900 font-medium">namapengguna1</p>
+              <img
+                class="w-10 h-10 object-cover rounded-full"
+                src="@/assets/images/kucing.jpeg"
+                alt="Foto Hewan Peliharaan"
+              />
+            </div>
+
+            <div>
+              <p class="text-gray-900 font-medium text-sm">namapengguna1</p>
               <p class="text-gray-600 text-sm">Lokasi1</p>
             </div>
 
@@ -117,3 +128,13 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    navigateToDP() {
+      this.$router.push("/detailpost");
+    },
+  },
+};
+</script>

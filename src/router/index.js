@@ -47,6 +47,16 @@ const router = createRouter({
       component: () => import("../views/Admin/DetailPost.vue"),
     },
     {
+      path: "/forumvet",
+      name: "Forum Vet",
+      component: () => import("../views/Admin/ForumVet.vue"),
+    },
+    {
+      path: "/daftarkunjungan",
+      name: "Daftar Kunjungan",
+      component: () => import("../views/Admin/DaftarKunjungan.vue"),
+    },
+    {
       path: "/tes",
       name: "tes",
       component: () => import("../views/Admin/tes.vue")
