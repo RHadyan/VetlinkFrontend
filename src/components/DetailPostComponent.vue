@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="flex items-center justify-center font-poppins min-h-screen bg-gray-100">
     <div
       class="p-4 flex-col md:flex-row h-10/12 w-11/12 bg-white rounded-lg space-y-2 shadow-md"
     >
@@ -74,7 +74,7 @@
               </svg>
             </div>
             <div>
-              <p class="font-regular text-base">Bekasi</p>
+              <p class="font-normal text-base">Bekasi</p>
             </div>
           </div>
           <div
@@ -82,12 +82,12 @@
             style="box-shadow: 5px 10px 45px 0px rgba(0, 0, 0, 0.07)"
           >
             <div class="items-center space-y-1">
-              <p class="text-[#3FA2F6] text-xl ps-2 font-medium">Judul</p>
+              <p class="text-[#3FA2F6] text-xl font-medium ps-1">Judul</p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="67"
                 height="3"
-                viewBox="0 0 89 4"
+                viewBox="0 0 89 3"
                 fill="none"
               >
                 <path
@@ -99,7 +99,7 @@
               </svg>
             </div>
             <div class="mt-2">
-              <p class="font-regular text-base text-pretty">
+              <p class="font-normal text-base text-pretty">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Vestibulum odio tortor, rhoncus eget varius vitae, accumsan
                 vitae nulla. Sed quis tristique magna.
@@ -111,12 +111,12 @@
             style="box-shadow: 5px 10px 45px 0px rgba(0, 0, 0, 0.07)"
           >
             <div class="items-center space-y-1">
-              <p class="text-[#3FA2F6] text-xl ps-2 font-medium">
+              <p class="text-[#3FA2F6] text-xl font-medium ps-1">
                 Terakhir Terlihat
               </p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="167"
+                width="177"
                 height="3"
                 viewBox="0 0 205 3"
                 fill="none"
@@ -130,7 +130,7 @@
               </svg>
             </div>
             <div class="mt-2">
-              <p class="font-regular text-base text-pretty">Depan gerbang UI</p>
+              <p class="font-light text-base text-pretty">Depan gerbang UI</p>
             </div>
           </div>
           <div
@@ -138,7 +138,7 @@
             style="box-shadow: 5px 10px 45px 0px rgba(0, 0, 0, 0.07)"
           >
             <div class="items-center space-y-1">
-              <p class="text-[#3FA2F6] text-xl ps-2 font-medium">Ciri-ciri</p>
+              <p class="text-[#3FA2F6] text-xl font-medium ps-1">Ciri-ciri</p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="90"
@@ -155,7 +155,7 @@
               </svg>
             </div>
             <div class="mt-2">
-              <p class="font-regular text-base text-pretty">
+              <p class="font-light text-base text-pretty">
                 Orange putih, mata hitam kuning, pecicilan
               </p>
             </div>

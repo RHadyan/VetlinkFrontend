@@ -17,5 +17,31 @@
                        color: #ffffff;
     }
     .nav-item {color: #878787;}
+
     .account-link:hover { background: #3d68ff; }
+
     .body {background: #b3b2b2}
+
+    .textorange {
+        -webkit-text-fill-color: #FFA33C !important
+    }
+
+    .font-family-poppins-md{
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+    }
+
+    .font-poppins{
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .font-family-poppins-normal{
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+    }
+
+    .font-family-poppins-bold{
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+    }
+

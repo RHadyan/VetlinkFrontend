@@ -26,8 +26,8 @@
               v-model="identifier"
               id="identifier"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-              placeholder="Email"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              placeholder="Email atau Username"
             />
           </div>
           <div>
@@ -36,7 +36,7 @@
               v-model="password"
               id="password"
               required
-              class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Password"
             />
           </div>
@@ -44,7 +44,7 @@
             <div class="flex md:justify-start sm:justify-center">
               <button
                 type="submit"
-                class="w-32 h-11 text-xl font-semibold text-white bg-[#FFA33C] rounded-full hover:bg-[#B08BBB] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                class="w-32 h-11 text-xl font-family-poppins-md text-white bg-[#FFA33C] rounded-full hover:bg-[#B08BBB] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               >
                 Login
               </button>
@@ -52,7 +52,7 @@
             <div class="flex md:justify-end sm:justify-center">
               <router-link to="/register"
                 type="submit"
-                class="w-32 h-11 text-xl text-center font-semibold text-[#FFA33C] bg-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 border-[#FFA33C] border-4 focus:ring-opacity-50"
+                class="w-32 h-11 text-xl text-center font-family-poppins-md textorange items-center flex justify-center bg-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 border-[#FFA33C] border-4 focus:ring-opacity-50"
               >
                 Register
               </router-link>
@@ -109,4 +109,5 @@ export default {
   max-width: 400px;
   margin: 0 auto;
 }
+
 </style>
