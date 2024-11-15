@@ -5,6 +5,7 @@
         <div
           class="bg-white overflow-x-auto w-11/12 grid grid-cols-1 rounded-[20px] text-black shadow-[20px_4px_35px_0px_rgba(0,0,0,0.09)] px-4 py-1 overflow-hidden mt-4 mb-4"
         >
+          <!-- Search bar for filtering table data -->
           <v-text-field
             v-model="search"
             placeholder="Search by Klinik Name or Status"

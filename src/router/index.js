@@ -26,6 +26,12 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
+      path: "/forumdetail",
+      name: "ForumDetail",
+      component: () => import("../views/Admin/DetailPost.vue"),
+      meta: { requiresAuth: true },
+    },
+    {
       path: "/hospital",
       name: "Hospital",
       component: () => import("../views/Admin/Hospital.vue"),
