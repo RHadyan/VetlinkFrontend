@@ -197,7 +197,7 @@
 
           <div class="flex justify-end h-36 items-end">
             <div class="flex items-center gap-4">
-              <v-btn variant="plain" icon>
+              <v-btn variant="plain" icon text @click="deleteItem()">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="25"
@@ -245,6 +245,8 @@
 <script>
 import { ref } from "vue";
 import { useRoute } from "vue-router";
+import axios from "axios";
+import router from "../router";
 
 export default {
   setup() {
@@ -258,7 +260,9 @@ export default {
         ? `${route.query.clinicImage}`
         : "https://via.placeholder.com/800x400.png"
     );
-    const documentFromApi = ref(route.query.document || "ada");
+    const documentFromApi = ref(route.query.document || "Undefined or missing");
+    const idKlinik = ref(route.query.idKlinik || "Undefined or missing");
+    console.log(idKlinik.value)
 
     const downloadDocument = () => {
       try {
@@ -269,7 +273,7 @@ export default {
           link.href = documentFromApi.value; // Use the provided URL directly
           link.download = "downloaded-document.pdf"; // Set a default filename or dynamically generate based on context
           link.target = "_blank"; // Optional: opens in a new tab if clicked instead of direct download
-          link.click(); 
+          link.click();
         } else {
           console.error("No document URL available.");
         }
@@ -277,8 +281,35 @@ export default {
         console.error("Download failed:", error);
       }
     };
+    const tesgetid = async () => {
+      console.log(idKlinik.value)
+    }
+    const deleteItem = async () => {
+      if (confirm(`Are you sure you want to delete ${namaKlinik.value} ?`)) {
+        try {
+          const token = localStorage.getItem("authToken");
+
+          await axios.delete(
+            `http://localhost:8000/api/admin/veteriner/${idKlinik.value}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          alert("Item deleted successfully!");
+          router.push("/hospital");
+        } catch (err) {
+          console.error("Failed to delete item:", err);
+          alert("Failed to delete item. Please try again later.");
+        }
+      }
+    };
     return {
       document,
+      tesgetid,
+      deleteItem,
       downloadDocument,
       namaKlinik,
       alamat,
