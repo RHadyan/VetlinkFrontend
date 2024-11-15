@@ -176,13 +176,13 @@
           </div>
 
           <div>
-            <input
-              type="text"
+            <textarea
               v-model="address"
               required
               class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               placeholder="Alamat Klinik"
-            />
+              rows="4"
+            ></textarea>
           </div>
 
           <div>
@@ -191,7 +191,7 @@
               v-model="open_time"
               required
               class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-              placeholder="Jam Buka Klinik (08:00)"
+              placeholder="Jam Buka Klinik (00:00)"
             />
           </div>
 
@@ -201,7 +201,7 @@
               v-model="close_time"
               required
               class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-              placeholder="Jam tutup Klinik"
+              placeholder="Jam tutup Klinik (24:00)"
             />
           </div>
 
@@ -221,7 +221,7 @@
               <input
                 type="file"
                 @change="handleClinicImageUpload"
-                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                class="block w-full text-sm text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#B08BBB] file:text-white hover:file:bg-[#FFA33C]"
               />
             </div>
           </div>
@@ -231,7 +231,7 @@
               <input
                 type="file"
                 @change="handleDocumentFileUpload"
-                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                class="block w-full text-white text-sm  file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#B08BBB] file:text-white hover:file:bg-[#FFA33C]"
               />
             </div>
           </div>

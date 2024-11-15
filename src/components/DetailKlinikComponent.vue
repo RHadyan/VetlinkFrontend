@@ -172,26 +172,25 @@
               </svg>
             </div>
 
-            <div class="my-5 justify-center flex gap-5">
-              <v-btn
-                class="d-flex align-center gap-2"
-                variant="tonal"
-                color="red"
-              >
-                <v-icon icon="mdi-cancel"></v-icon>
-                Tolak
-              </v-btn>
-              <v-btn
-                class="d-flex align-center gap-2"
-                variant="tonal"
-                color="success"
-              >
-                <v-icon
-                  icon="mdi-checkbox-marked-circle"
+            <div class="my-5">
+              <v-radio-group inline>
+                <v-radio
+                  label="Tolak"
+                  value="one"
+                  variant="tonal"
+                  color="red"
+                  style="background-color: rgba(255, 0, 0, 0.15)"
+                  class="pe-3 rounded-md text-red"
+                ></v-radio>
+                <v-radio
+                  label="Setuju"
+                  value="two"
+                  variant="tonal"
                   color="success"
-                ></v-icon>
-                Setuju
-              </v-btn>
+                  style="background-color: rgba(0, 255, 0, 0.15)"
+                  class="pe-3 rounded-md text-green"
+                ></v-radio>
+              </v-radio-group>
             </div>
           </div>
 
