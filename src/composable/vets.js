@@ -100,10 +100,11 @@ export function useVets() {
         router.push({
           path: "/detailklinik",
           query: {
+            idKlinik:detail.id,
             namaKlinik: detail.clinic_name,
             alamat: detail.address,
             clinicImage: detail.clinic_image, // Pass clinic image path
-            document: detail.document_url, // Pass document URL
+            document: detail.document, // Pass document URL
           },
         });
       }

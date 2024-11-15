@@ -276,7 +276,7 @@ export default {
       close_time,
       password,
       clinic_image,
-      document_file,
+      document,
       handleClinicImageUpload,
       handleDocumentFileUpload,
       error,
@@ -316,7 +316,7 @@ export default {
       clinic_image,
       handleClinicImageUpload,
       handleDocumentFileUpload,
-      document_file,
+      document,
       error,
       register,
       getPreciseLocation, // Return the method so it can be used in the template

@@ -18,7 +18,7 @@ export function useRegister() {
   const password = ref("");
   const role = ref("veteriner");
   const clinic_image = ref(null); // Add clinic image field
-  const document_file = ref(null); // Add document file field
+  const document = ref(null); // Add document file field
   const error = ref(null);
 
   const handleClinicImageUpload = (event) => {
@@ -31,7 +31,7 @@ export function useRegister() {
   const handleDocumentFileUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
-      document_file.value = file;
+      document.value = file;
     }
   };
 
@@ -57,8 +57,8 @@ export function useRegister() {
       if (clinic_image.value) {
         formData.append("clinic_image", clinic_image.value);
       }
-      if (document_file.value) {
-        formData.append("document_file", document_file.value);
+      if (document.value) {
+        formData.append("document", document.value);
       }
 
       // Mengirimkan data registrasi ke API menggunakan POST request
@@ -100,7 +100,7 @@ export function useRegister() {
     close_time,
     password,
     clinic_image,
-    document_file,
+    document,
     error,
     register,
     handleClinicImageUpload,

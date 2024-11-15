@@ -90,9 +90,7 @@
             </div>
             <div class="mt-2">
               <p class="font-light text-base text-pretty">
-                Jalan Gunung Tangkuban Perahu Ruko Ambrosia Arcade No. 23
-                Perumahan Lippo Cikarang, Cibatu, Cikarang Sel., Cikarang, Kab.
-                Bekasi, Jawa Barat
+                {{ alamat }}
               </p>
             </div>
           </div>
@@ -119,8 +117,7 @@
               </svg>
             </div>
             <div>
-              docnya di sini
-              <v-btn variant="plain">
+              <v-btn variant="plain" @click="downloadDocument">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -258,12 +255,31 @@ export default {
     const alamat = ref(route.query.alamat || "Unknown Address");
     const clinicImage = ref(
       route.query.clinicImage
-        ? `https://vetlink-image-url.com/${route.query.clinicImage}`
+        ? `${route.query.clinicImage}`
         : "https://via.placeholder.com/800x400.png"
     );
-    const document = ref(route.query.document || "");
+    const documentFromApi = ref(route.query.document || "ada");
 
+    const downloadDocument = () => {
+      try {
+        // Check if documentFromApi has a valid URL
+        if (documentFromApi.value) {
+          // Create a temporary anchor tag to trigger the download
+          const link = document.createElement("a");
+          link.href = documentFromApi.value; // Use the provided URL directly
+          link.download = "downloaded-document.pdf"; // Set a default filename or dynamically generate based on context
+          link.target = "_blank"; // Optional: opens in a new tab if clicked instead of direct download
+          link.click(); 
+        } else {
+          console.error("No document URL available.");
+        }
+      } catch (error) {
+        console.error("Download failed:", error);
+      }
+    };
     return {
+      document,
+      downloadDocument,
       namaKlinik,
       alamat,
       clinicImage,
