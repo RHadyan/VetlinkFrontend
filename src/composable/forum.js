@@ -1,5 +1,7 @@
 import { ref, computed, onMounted } from "vue";
 import axios from "axios";
+import router from "../router";
+import apiClient from "@/api/axiosInstance";
 
 export function useForum() {
   const cards = ref([]);
@@ -12,14 +14,11 @@ export function useForum() {
   const fetchForums = async () => {
     try {
       const token = localStorage.getItem("authToken"); // Optional: Check if token is required
-      const response = await axios.get(
-        "http://localhost:8000/api/admin/forums",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Use token if needed
-          },
-        }
-      );
+      const response = await apiClient.get("admin/forums", {
+        headers: {
+          Authorization: `Bearer ${token}`, // Use token if needed
+        },
+      });
 
       // Assuming the API returns an array of forum cards
       cards.value = response.data.data;
@@ -35,7 +34,7 @@ export function useForum() {
       try {
         const token = localStorage.getItem("authToken");
 
-        await axios.delete(`http://localhost:8000/api/admin/forum/${item}`, {
+        await apiClient.delete(`admin/forum/${item}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -97,34 +96,29 @@ export function useForum() {
     try {
       const token = localStorage.getItem("authToken");
 
-      const response = await axios.get(
-        `http://localhost:8000/api/admin/forum/${item.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await apiClient.get(`admin/forum/${item.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const detail = response.data.data;
-      console.log(detail)
-    //   if (detail) {
-    //     router.push({
-    //       path: "/forumdetail",
-    //       query: {
-    //         title: detail.title,
-    //         last_seen: detail.last_seen,
-    //         chara: detail.characteristics,
-    //         clinicImage: detail.clinic_image,
-    //         document: detail.document,
-    //       },
-    //     });
-    //   }
+
+      if (detail) {
+        // Navigate to a detail page or set detail data for a modal
+        router.push({
+          name: "ForumDetail",
+          query: {
+            idPost: detail.id,
+          },
+        });
+      }
     } catch (err) {
-      console.error("Failed to fetch clinic details:", err);
-      alert("Failed to fetch details. Please try again later.");
+      // console.error("Failed to fetch forum details:", err);
+      // alert("Failed to fetch details. Please try again later.");
     }
   };
+
   // Fetch data when the component is mounted
   onMounted(() => {
     fetchForums();

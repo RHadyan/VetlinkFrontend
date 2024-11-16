@@ -1,22 +1,21 @@
 import { ref, watch, onMounted, computed } from "vue"; // Import `computed` for search functionality
 import axios from "axios";
 import router from "../router";
+import apiClient from "@/api/axiosInstance";
 
 export function useVets() {
   // State variables
-  const veteriners = ref([]); 
+  const veteriners = ref([]);
   const totalItems = ref(0);
-  const loading = ref(false); 
+  const loading = ref(false);
   const itemsPerPage = ref(10);
-  const currentPage = ref(1); 
-  const sortBy = ref(["register_status"]); 
+  const currentPage = ref(1);
+  const sortBy = ref(["register_status"]);
   const sortDesc = ref(false);
   const error = ref(null);
 
-
   const alamat = ref("");
   const namaKlinik = ref("");
-
 
   const search = ref("");
 
@@ -31,44 +30,39 @@ export function useVets() {
       const statusMatch = item.register_status
         .toLowerCase()
         .includes(search.value.toLowerCase());
-      return nameMatch || statusMatch || kotaMatch; 
+      return nameMatch || statusMatch || kotaMatch;
     });
   });
 
-  
   const fetchVeteriners = async () => {
-    loading.value = true; 
+    loading.value = true;
 
     try {
       const token = localStorage.getItem("authToken");
 
-      const response = await axios.get(
-        "http://localhost:8000/api/admin/veteriners",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, 
-          },
-          params: {
-            page: currentPage.value, 
-            per_page: itemsPerPage.value, 
-            sort_by: sortBy.value[0], 
-            sort_desc: sortDesc.value, 
-          },
-        }
-      );
-
+      const response = await apiClient.get("admin/veteriners", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          page: currentPage.value,
+          per_page: itemsPerPage.value,
+          sort_by: sortBy.value[0],
+          sort_desc: sortDesc.value,
+        },
+      });
 
       if (response.data && Array.isArray(response.data.data)) {
-        veteriners.value = response.data.data; 
+        veteriners.value = response.data.data;
         totalItems.value = response.data.total;
       } else {
         throw new Error("Unexpected response format");
       }
     } catch (err) {
-      error.value = "GAGAL MENDAPATKAN DATA VETERINER"; 
+      error.value = "GAGAL MENDAPATKAN DATA VETERINER";
       console.error("Error fetching veteriners: ", err);
     } finally {
-      loading.value = false; 
+      loading.value = false;
     }
   };
 
@@ -76,22 +70,18 @@ export function useVets() {
   const deleteItem = async (item) => {
     if (confirm(`Are you sure you want to delete ${item.clinic_name}?`)) {
       try {
-        const token = localStorage.getItem("authToken"); 
+        const token = localStorage.getItem("authToken");
 
-  
-        await axios.delete(
-          `http://localhost:8000/api/admin/veteriner/${item.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, 
-            },
-          }
-        );
+        await apiClient.delete(`admin/veteriner/${item.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         // Remove item from the table if successful
         const index = veteriners.value.indexOf(item);
         if (index > -1) {
-          veteriners.value.splice(index, 1); 
+          veteriners.value.splice(index, 1);
         }
         alert("Item deleted successfully!");
       } catch (err) {
@@ -101,33 +91,28 @@ export function useVets() {
     }
   };
 
-
   const klinikDetail = async (item) => {
     try {
       const token = localStorage.getItem("authToken");
 
-    
-      const response = await axios.get(
-        `http://localhost:8000/api/admin/veteriner/${item.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, 
-          },
-        }
-      );
+      const response = await apiClient.get(`admin/veteriner/${item.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const detail = response.data.data;
 
       if (detail) {
-        
         router.push({
           path: "/detailklinik",
           query: {
             idKlinik: detail.id,
             namaKlinik: detail.clinic_name,
             alamat: detail.address,
-            clinicImage: detail.clinic_image, 
-            document: detail.document, 
+            clinicImage: detail.clinic_image,
+            statusKlinik: detail.register_status,
+            document: detail.document,
           },
         });
       }
@@ -144,11 +129,10 @@ export function useVets() {
   });
 
   return {
-
     alamat,
     namaKlinik,
     veteriners,
-    filteredVeteriners, 
+    filteredVeteriners,
     totalItems,
     loading,
     itemsPerPage,

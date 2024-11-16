@@ -1,6 +1,8 @@
 import { ref } from "vue";
 import axios from "axios";
 import router from "@/router";
+import apiClient from "@/api/axiosInstance";
+
 
 export function useRegister() {
   // Variabel untuk menyimpan data form
@@ -62,8 +64,8 @@ export function useRegister() {
       }
 
       // Mengirimkan data registrasi ke API menggunakan POST request
-      const response = await axios.post(
-        "http://localhost:8000/api/register",
+      const response = await apiClient.post(
+        "register",
         formData,
         {
           headers: {

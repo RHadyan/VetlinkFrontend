@@ -1,6 +1,8 @@
 import { ref } from "vue";
 import axios from "axios";
 import router from "../router";
+import apiClient from "@/api/axiosInstance";
+
 
 export function useProfile() {
   const profile = ref(null); // Reaktif untuk menyimpan data profil
@@ -14,7 +16,7 @@ export function useProfile() {
       }
 
       // Mengirim permintaan GET untuk mendapatkan profil pengguna
-      const response = await axios.get("http://localhost:8000/api/profile", {
+      const response = await apiClient.get("profile", {
         headers: {
           Authorization: `Bearer ${token}`, // Mengirim token dalam header Authorization
         },

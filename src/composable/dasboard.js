@@ -1,6 +1,8 @@
 import { ref } from "vue";
 import axios from "axios";
 import router from "@/router";
+import apiClient from "@/api/axiosInstance";
+
 
 export function useDashboard() {
   // Define a ref to store the list of veteriners
@@ -20,15 +22,15 @@ export function useDashboard() {
       const token = localStorage.getItem("authToken");
 
       // Make sure to attach the Authorization header with the token
-      const responseVets = await axios.get(
-        "http://localhost:8000/api/admin/veteriners",
+      const responseVets = await apiClient.get(
+        "admin/veteriners",
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
-      );const responseForums = await axios.get(
-        "http://localhost:8000/api/admin/forums",
+      );const responseForums = await apiClient.get(
+        "admin/forums",
         {
           headers: {
             Authorization: `Bearer ${token}`,

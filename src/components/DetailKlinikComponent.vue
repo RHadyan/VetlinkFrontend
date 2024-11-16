@@ -173,10 +173,10 @@
             </div>
 
             <div class="my-5">
-              <v-radio-group inline>
+              <v-radio-group v-model="statusAntri" inline>
                 <v-radio
                   label="Tolak"
-                  value="one"
+                  value="rejected"
                   variant="tonal"
                   color="red"
                   style="background-color: rgba(255, 0, 0, 0.15)"
@@ -184,7 +184,7 @@
                 ></v-radio>
                 <v-radio
                   label="Setuju"
-                  value="two"
+                  value="approved"
                   variant="tonal"
                   color="success"
                   style="background-color: rgba(0, 255, 0, 0.15)"
@@ -230,6 +230,7 @@
                 class="d-flex text-white align-center gap-2 rounded-pill"
                 color="#FFA33C"
                 style="font-family: 'Poppins', sans-serif; font-weight: medium"
+                @click="submitApproval"
               >
                 Kirim
               </v-btn>
@@ -242,7 +243,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
 import router from "../router";
@@ -261,17 +262,17 @@ export default {
     );
     const documentFromApi = ref(route.query.document || "Undefined or missing");
     const idKlinik = ref(route.query.idKlinik || "Undefined or missing");
-    console.log(idKlinik.value)
+    console.log("ID Klinik:", idKlinik.value);
+
+    const statusAntri = ref(""); // Bind to v-radio-group
 
     const downloadDocument = () => {
       try {
-        // Check if documentFromApi has a valid URL
         if (documentFromApi.value) {
-          // Create a temporary anchor tag to trigger the download
           const link = document.createElement("a");
-          link.href = documentFromApi.value; // Use the provided URL directly
-          link.download = "downloaded-document.pdf"; // Set a default filename or dynamically generate based on context
-          link.target = "_blank"; // Optional: opens in a new tab if clicked instead of direct download
+          link.href = documentFromApi.value;
+          link.download = "downloaded-document.pdf";
+          link.target = "_blank";
           link.click();
         } else {
           console.error("No document URL available.");
@@ -280,11 +281,48 @@ export default {
         console.error("Download failed:", error);
       }
     };
-    const tesgetid = async () => {
-      console.log(idKlinik.value)
-    }
+
+    const submitApproval = async () => {
+      if (!statusAntri.value) {
+        alert("Pilih status persetujuan terlebih dahulu!");
+        return;
+      }
+
+      try {
+        const token = localStorage.getItem("authToken");
+
+        const formData = new FormData();
+        formData.append("register_status", statusAntri.value); // Add the selected status
+
+        // Make the POST request
+        const response = await axios.post(
+          `http://localhost:8000/api/admin/veteriner/${idKlinik.value}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        alert(`Status berhasil diperbarui menjadi: ${statusAntri.value}`);
+        router.push("/hospital"); // Redirect after success
+      } catch (err) {
+        console.error(
+          `Failed to update klinik status for ID: ${idKlinik.value}`,
+          err.response?.data || err
+        );
+        alert(
+          `Gagal memperbarui status klinik. Error: ${
+            err.response?.data?.message || "Unknown error"
+          }`
+        );
+      }
+    };
+
     const deleteItem = async () => {
-      if (confirm(`Are you sure you want to delete ${namaKlinik.value} ?`)) {
+      if (confirm(`Are you sure you want to delete ${namaKlinik.value}?`)) {
         try {
           const token = localStorage.getItem("authToken");
 
@@ -305,15 +343,20 @@ export default {
         }
       }
     };
+
+    watch(statusAntri, (newValue) => {
+      console.log("statusAntri changed to:", newValue);
+    });
+
     return {
-      document,
-      tesgetid,
+      statusAntri,
+      documentFromApi,
       deleteItem,
       downloadDocument,
       namaKlinik,
       alamat,
       clinicImage,
-      document,
+      submitApproval,
     };
   },
 };

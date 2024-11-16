@@ -1,10 +1,16 @@
 <template>
-  <div class="flex items-center justify-center font-poppins min-h-screen bg-gray-100">
+  <div
+    class="flex items-center justify-center font-poppins min-h-screen bg-gray-100"
+  >
     <div
       class="p-4 flex-col md:flex-row h-10/12 w-11/12 bg-white rounded-lg space-y-2 shadow-md"
     >
+      <p v-if="loading" class="text-center text-gray-500">Loading...</p>
+
+      <!-- Show error message if the API call fails -->
+      <p v-if="error" class="text-center text-red-500">{{ error }}</p>
       <div class="items-center">
-        <button class="hover:bg-opacity-80 group">
+        <router-link to="/forum" class="hover:bg-opacity-80 group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="70"
@@ -19,16 +25,16 @@
               class="fill-current text-[#FF004E] group-hover:text-[#B08BBB]"
             />
           </svg>
-        </button>
+        </router-link>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-4">
         <div
           style="max-width: 550px; max-height: 550px; overflow: hidden"
           class="rounded-xl"
         >
           <img
-            src="@/assets/images/cat1.png"
+           :src="postData.pet_image"
             alt="Post Pict"
             style="width: 100%; height: 100%; object-fit: cover"
           />
@@ -48,8 +54,9 @@
                 style="width: 100%; height: 100%; object-fit: cover"
               />
             </div>
-            <div>
-              <p class="font-bold text-3xl">Ramadhan</p>
+            <div v-if="postData">
+              <p class="font-bold text-3xl">{{ postData?.user?.name || 'Loading.....' }}</p>
+
             </div>
           </div>
           <div
@@ -74,7 +81,7 @@
               </svg>
             </div>
             <div>
-              <p class="font-normal text-base">Bekasi</p>
+              <p class="font-normal text-base">{{ postData.last_seen }}</p>
             </div>
           </div>
           <div
@@ -100,9 +107,7 @@
             </div>
             <div class="mt-2">
               <p class="font-normal text-base text-pretty">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vestibulum odio tortor, rhoncus eget varius vitae, accumsan
-                vitae nulla. Sed quis tristique magna.
+               {{ postData.title }}
               </p>
             </div>
           </div>
@@ -130,7 +135,7 @@
               </svg>
             </div>
             <div class="mt-2">
-              <p class="font-light text-base text-pretty">Depan gerbang UI</p>
+              <p class="font-light text-base text-pretty">{{ postData.last_seen }}</p>
             </div>
           </div>
           <div
@@ -156,7 +161,7 @@
             </div>
             <div class="mt-2">
               <p class="font-light text-base text-pretty">
-                Orange putih, mata hitam kuning, pecicilan
+                {{ postData.characteristics }}
               </p>
             </div>
           </div>
@@ -186,53 +191,7 @@
               style="max-height: 200px"
             >
               <p class="font-regular text-base text-pretty">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vestibulum odio tortor, rhoncus eget varius vitae, accumsan
-                vitae nulla. Sed quis tristique magna. Phasellus mattis pulvinar
-                nibh. Quisque laoreet, velit et ornare egestas, massa magna
-                fringilla est, eget fringilla lacus nunc sed metus. Sed aliquet
-                non sapien at scelerisque. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Aliquam eget sem sed lorem
-                elementum dapibus. In eu quam pretium, facilisis risus non,
-                lobortis odio. Duis vitae porta sem. Duis at turpis varius eros
-                semper rutrum sed vel risus. Donec ut mauris ante. Donec sit
-                amet placerat sem, ut molestie elit. Etiam vehicula lacus sit
-                amet eros luctus finibus. Integer eros erat, euismod ut dui ut,
-                aliquam luctus eros. Praesent posuere tincidunt est ac
-                tincidunt. Aliquam euismod bibendum volutpat. Quisque porta
-                lorem et odio condimentum varius. Sed luctus sagittis varius. Ut
-                consequat lacinia orci, sit amet imperdiet nibh commodo id.
-                Vestibulum eu volutpat dolor, id ullamcorper diam. Sed at
-                malesuada magna. Nam consequat vestibulum sem a blandit. Sed at
-                purus eget sem cursus ullamcorper. Ut ullamcorper libero non
-                aliquet aliquet. Nullam in semper nisi. Sed suscipit porta elit,
-                at mattis nulla maximus nec. Curabitur rhoncus faucibus magna,
-                eu semper mi rutrum ac. Mauris quis velit dolor. Maecenas et
-                enim in nisi laoreet gravida. Fusce malesuada sollicitudin
-                tristique. Nam nec orci orci. Maecenas suscipit ex ante. Aenean
-                aliquam vulputate sem sed tempus. Duis ultricies vel ante vitae
-                vestibulum. Quisque scelerisque aliquet sapien, in efficitur dui
-                imperdiet at. Cras mollis feugiat libero ac volutpat. Sed ut
-                tempor nisl. Vivamus pharetra vitae tellus eu facilisis. Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-                tellus mauris, luctus iaculis felis quis, porttitor volutpat
-                urna. Duis metus neque, imperdiet ut quam dapibus, auctor
-                faucibus lacus. Phasellus venenatis metus lorem, quis interdum
-                ipsum mattis et. Cras vulputate lacus magna, quis congue ipsum
-                sodales et. Pellentesque id ornare mauris, quis hendrerit dui.
-                Nam id magna imperdiet, sagittis leo eget, sagittis enim. Donec
-                leo mauris, varius et lacus vel, laoreet placerat libero.
-                Pellentesque semper enim ut neque tincidunt euismod. Quisque
-                maximus ante lectus, eu hendrerit urna bibendum ac. Donec
-                interdum velit a est fringilla, egestas ultrices nisi euismod.
-                Proin suscipit libero nec elit imperdiet, eget consequat ex
-                congue. Curabitur vel nisl quis nunc ornare condimentum vel
-                vitae nisi. Proin dignissim, lectus ac congue pulvinar, odio
-                nisl lobortis sem, nec condimentum tortor sem non tortor. Class
-                aptent taciti sociosqu ad litora torquent per conubia nostra,
-                per inceptos himenaeos. Aliquam ligula tortor, euismod vel ipsum
-                sit amet, lacinia sagittis lorem. Maecenas ullamcorper arcu eu
-                commodo dapibus. Ut elementum est eu orci hendrerit auctor.
+                {{ postData.description }}
               </p>
             </div>
           </div>
@@ -241,3 +200,62 @@
     </div>
   </div>
 </template>
+
+<script>
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+
+import axios from "axios";
+import router from "../router";
+import apiClient from "@/api/axiosInstance";
+
+
+export default {
+  setup() {
+    const route = useRoute();
+    const postData = ref([]);
+
+    // Retrieve query parameters
+    const idPost = ref(route.query.idPost || "Unknown Clinic");
+    console.log(idPost.value);
+    const loading = ref(true);
+    const error = ref(null);
+
+    const fetchPostDetails = async () => {
+      try {
+        // Simulate getting the token (assuming it's stored in localStorage)
+        const token = localStorage.getItem("authToken");
+
+        // Make API call with Axios, including Bearer token in headers
+        const response = await apiClient.get(
+          `admin/forum/${idPost.value}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        // Save the response data to the postData ref
+        postData.value = response.data.data;
+        // console.log(postData);
+      } catch (err) {
+        console.error("Error fetching post details:", err);
+        error.value = "Failed to load post details. Please try again later.";
+      } finally {
+        loading.value = false;
+      }
+    };
+    onMounted(() => {
+      fetchPostDetails();
+    });
+    return {
+      idPost,
+      fetchPostDetails,
+      loading,
+      error,
+      postData,
+    };
+  },
+};
+</script>

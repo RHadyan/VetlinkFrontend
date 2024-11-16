@@ -11,7 +11,7 @@
 
     <nav class="text-white text-base flex flex-col font-semibold">
       <router-link
-        to="/"
+        to="/admin"
         class="flex mx-3 my-2 gap-2 rounded-lg items-center text-gray-500 py-3 pl-5 nav-item transition duration-300 ease-in-out"
       >
         <svg

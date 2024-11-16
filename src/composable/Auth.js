@@ -1,5 +1,7 @@
 import { ref } from "vue";
 import axios from "axios";
+import apiClient from "@/api/axiosInstance";
+
 import router from "../router";
 
 export function useAuth() {
@@ -10,13 +12,20 @@ export function useAuth() {
   async function login() {
     error.value = null;
     try {
-      const response = await axios.post("http://localhost:8000/api/login", {
+      const response = await apiClient.post("login", {
         identifier: identifier.value,
         password: password.value,
       });
       localStorage.setItem("authToken", response.data.data.token);
+      localStorage.setItem("userRole", response.data.data.user.role);
+
       console.log("Token disimpan:", response.data.data.token); // Log token setelah berhasil disimpan
-      router.push("/");
+      console.log("Admin:", response.data.data.user.role); // Log token setelah berhasil disimpan
+      if (response.data.data.user.role === "admin") {
+        router.push("/admin");
+      } else {
+        router.push("/user");
+      }
     } catch (err) {
       error.value = "Login gagal. Silakan coba lagi.";
     }
@@ -24,8 +33,11 @@ export function useAuth() {
 
   function logout() {
     const token = localStorage.getItem("authToken");
+    const role = localStorage.getItem("userRole");
     console.log("Token yang dihapus:", token);
+    console.log("role yang dihapus:", role);
     localStorage.removeItem("authToken");
+    localStorage.removeItem("userRole");
     router.push("/login");
   }
 

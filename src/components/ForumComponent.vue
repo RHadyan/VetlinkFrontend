@@ -19,7 +19,7 @@
             v-for="card in paginatedCards"
             :key="card.id"
             class="rounded w-64 overflow-hidden shadow-md bg-white cursor-pointer transform transition-transform duration-300 hover:scale-105"
-            @click="postDetail(card.id)"
+            @click="postDetail(card)"
           >
             <img
               class="w-64 h-64 object-cover"
