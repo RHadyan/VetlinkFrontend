@@ -87,6 +87,14 @@ const router = createRouter({
       },
     },
     {
+      path: "/documentvet",
+      name: "Document Vet",
+      component: () => import("../views/Admin/DocumentVet.vue"),
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
       path: "/daftarkunjungan",
       name: "Daftar Kunjungan",
       component: () => import("../views/Admin/DaftarKunjungan.vue"),

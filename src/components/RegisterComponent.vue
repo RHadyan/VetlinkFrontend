@@ -110,7 +110,7 @@
                 />
               </svg>
               <p class="font-normal text-white text-base">
-                Izinkan kami mengetahui lokasi Anda.
+                Izinkan kami mengetahui lokasi usaha Anda.
               </p>
             </div>
 
@@ -226,14 +226,19 @@
             </div>
           </div>
           <div class="text-white">
-            <p class="font-normal">Document File</p>
+            <p class="font-normal">File Dokumen</p>
             <div class="flex gap-2 items-center">
               <input
                 type="file"
                 @change="handleDocumentFileUpload"
-                class="block w-full text-white text-sm  file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#B08BBB] file:text-white hover:file:bg-[#FFA33C]"
+                class="block w-full text-white text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#B08BBB] file:text-white hover:file:bg-[#FFA33C]"
               />
             </div>
+            <p class="font-normal text-xs mt-2">
+              1. Surat Izin Praktik Paramedik Veteriner Pelayanan Kesehatan Hewan. <br>
+              2. (SIPP Keswan) Surat Izin Praktik bagi Dokter Hewan (SIP DRH). <br>
+              3. Surat Izin Tempat Usaha.
+            </p>
           </div>
 
           <!-- button regis -->
