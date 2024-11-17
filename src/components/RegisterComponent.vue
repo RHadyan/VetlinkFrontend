@@ -5,7 +5,7 @@
     >
       <!-- Container Gambar dan Form -->
       <div class="items-start pt-4 ps-12 flex justify-start">
-        <router-link to="/login" class="hover:bg-opacity-80 group">
+        <router-link to="/" class="hover:bg-opacity-80 group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="70"

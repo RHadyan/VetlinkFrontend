@@ -38,7 +38,7 @@ export function useAuth() {
     console.log("role yang dihapus:", role);
     localStorage.removeItem("authToken");
     localStorage.removeItem("userRole");
-    router.push("/login");
+    router.push("/");
   }
 
   function checkAuth() {
