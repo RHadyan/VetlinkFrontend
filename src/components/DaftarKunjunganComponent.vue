@@ -7,7 +7,7 @@
         >
           <v-data-table
             :headers="headers"
-            :items="veteriners"
+            :items="Queue"
             v-model:page="currentPage"
             v-model:items-per-page="itemsPerPage"
             v-model:sort-by="sortBy"
@@ -34,13 +34,13 @@
             </template>
 
             <!-- Slot for register_status -->
-            <template v-slot:item.register_status="{ item }">
+            <template v-slot:item.status="{ item }">
               <div class="text-center">
                 <v-chip
                   :color="
-                    item.register_status === 'approved'
+                    item.status === 'finished'
                       ? 'green'
-                      : item.register_status === 'pending'
+                      : item.status === 'ongoing'
                       ? 'orange'
                       : 'red'
                   "
@@ -48,11 +48,10 @@
                   size="small"
                   label
                 >
-                  {{ item.register_status }}
+                  {{ item.status  }}
                 </v-chip>
               </div>
             </template>
-
           </v-data-table>
 
           <!-- Loading state -->
@@ -71,33 +70,35 @@
 </template>
 
 <script>
+import { useQueue } from "@/composable/daftarKunjungan";
 import { ref } from "vue";
 import { useRouter } from "vue-router"; // Import useRouter
-import { useVets } from "@/composable/vets.js";
+// import { useQ } from "@/composable/vets.js";
 
 export default {
   setup() {
-    const router = useRouter(); // Inisialisasi router instance
+    const router = useRouter(); // Initialize router instance
     const {
-      veteriners,
+      Queue,
       totalItems,
       loading,
       itemsPerPage,
       currentPage,
       sortBy,
       sortDesc,
-      deleteItem,
-      fetchVeteriners,
       error,
-    } = useVets();
+      search,
+      filteredQueue,
+      fetchQueue,
+    } = useQueue();
 
     // Header for v-data-table
     const headers = [
-      { title: "Nama Pemilik", value: "clinic_name" },
-      { title: "Hewan", value: "city" },
-      { title: "Kontak", value: "phone_number" },
-      { title: "Tanggal", value: "address" },
-      { title: "Status Kunjungan", value: "register_status" },
+      { title: "Nama Pemilik", value: "customer.name" },
+      { title: "Hewan", value: "pet.type" },
+      { title: "Kontak", value: "customer.phone" },
+      { title: "Tanggal", value: "appointment_time" },
+      { title: "Status Kunjungan", value: "status" },
     ];
 
     // Format time utility
@@ -106,25 +107,20 @@ export default {
       return time.slice(0, 5);
     };
 
-    // Function for navigation
-    const navigateToDK = () => {
-      router.push("/detailklinik"); // Gunakan router instance untuk navigasi
-    };
-
+    // Expose variables to the template
     return {
-      veteriners,
+      Queue,
       totalItems,
       loading,
       itemsPerPage,
       currentPage,
       sortBy,
       sortDesc,
-      fetchVeteriners,
       error,
-      formatTime,
-      headers,
-      deleteItem,
-      navigateToDK,
+      search,
+      filteredQueue,
+      fetchQueue,
+      headers, // Include `headers` here to fix the warning
     };
   },
 };

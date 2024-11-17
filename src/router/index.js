@@ -81,7 +81,7 @@ const router = createRouter({
     {
       path: "/forumvet",
       name: "Forum Vet",
-      component: () => import("../views/Admin/ForumVet.vue"),
+      component: () => import("../views/vet/ForumVet.vue"),
       meta: {
         requiresAuth: true,
       },
@@ -89,7 +89,7 @@ const router = createRouter({
     {
       path: "/documentvet",
       name: "Document Vet",
-      component: () => import("../views/Admin/DocumentVet.vue"),
+      component: () => import("../views/vet/DocumentVet.vue"),
       meta: {
         requiresAuth: true,
       },
@@ -97,7 +97,7 @@ const router = createRouter({
     {
       path: "/daftarkunjungan",
       name: "Daftar Kunjungan",
-      component: () => import("../views/Admin/DaftarKunjungan.vue"),
+      component: () => import("../views/vet/DaftarKunjungan.vue"),
       meta: {
         requiresAuth: true,
       },
