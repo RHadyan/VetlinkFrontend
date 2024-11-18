@@ -22,6 +22,7 @@ export function useRegister() {
   const clinic_image = ref(null); // Add clinic image field
   const document = ref(null); // Add document file field
   const error = ref(null);
+  const pesanStatus = ref("Klinik Mu Masih di review oleh Admin")
 
   const handleClinicImageUpload = (event) => {
     const file = event.target.files[0];
@@ -56,6 +57,8 @@ export function useRegister() {
       formData.append("open_time", open_time.value);
       formData.append("close_time", close_time.value);
       formData.append("password", password.value);
+      formData.append("register_status_pesan", password.value);
+
       if (clinic_image.value) {
         formData.append("clinic_image", clinic_image.value);
       }

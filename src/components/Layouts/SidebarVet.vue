@@ -11,6 +11,7 @@
 
     <nav class="text-white text-base flex flex-col font-semibold">
       <router-link
+        v-if="isApprove"
         to="/daftarkunjungan"
         class="flex mx-3 my-2 gap-2 rounded-lg items-center text-gray-500 py-3 pl-5 nav-item transition duration-300 ease-in-out"
       >
@@ -34,6 +35,7 @@
       </router-link>
 
       <router-link
+        v-if="isApprove"
         to="/forumvet"
         class="mx-3 my-2 gap-2 rounded-lg flex items-center text-gray-500 py-3 pl-5 nav-item transition duration-300 ease-in-out"
       >
@@ -104,12 +106,15 @@
 <script>
 import { useRoute } from "vue-router";
 import { useAuth } from "../../composable/Auth"; // Adjust the path to where your Auth.js file is located
+import { useKlinik } from "@/composable/statusKlinik";
+import { ref } from "vue";
 
 export default {
   setup() {
     const route = useRoute();
     const { logout } = useAuth(); // Import the logout function
-
+    const { Klinik, error, loading, fetchKlinik } = useKlinik();
+    const isApprove = ref(localStorage.getItem("StorageStatus") === "approved");
     // Function to check if the current route is active
     const isActiveRoute = (path) => route.path === path;
 
@@ -118,7 +123,15 @@ export default {
       logout();
     };
 
-    return { isActiveRoute, handleLogout };
+    return {
+      isActiveRoute,
+      handleLogout,
+      Klinik,
+      error,
+      loading,
+      fetchKlinik,
+      isApprove,
+    };
   },
 };
 </script>

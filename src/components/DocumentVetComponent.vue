@@ -29,9 +29,22 @@
           </div>
           <div class="flex justify-center">
             <div
+              v-if="Klinik.register_status === 'rejected'"
               class="flex justify-center items-center my-12 bg-[#FF4E4E] bg-opacity-25 rounded-md w-32 h-10"
             >
-              <p class="text-red">Ditolak</p>
+              <p class="text-red">Rejected</p>
+            </div>
+            <div
+              v-if="Klinik.register_status === 'approved'"
+              class="flex justify-center items-center my-12 bg-[#5AAF51] bg-opacity-25 rounded-md w-32 h-10"
+            >
+              <p class="text-green">Approved</p>
+            </div>
+            <div
+              v-if="Klinik.register_status === 'pending'"
+              class="flex justify-center items-center my-12 bg-[#FFA33C] bg-opacity-25 rounded-md w-32 h-10"
+            >
+              <p class="text-[#FFA33C]">Pending</p>
             </div>
           </div>
         </div>
@@ -70,8 +83,7 @@
           </div>
           <div class="flex justify-center">
             <p class="text-black mt-6 text-pretty mx-3">
-              Karena anda belum melengkapi salah satu persyaratan dokumen yaitu,
-              Surat Izin Tempat Usaha.
+              {{ Klinik.register_status_message }}
             </p>
           </div>
         </div>
@@ -125,31 +137,16 @@
 </template>
 
 <script>
-import { useDashboard } from "@/composable/dasboard.js";
+import { useKlinik } from "@/composable/statusKlinik";
 
 export default {
   setup() {
-    // Use the composable `useDashboard`
-    const {
-      jumlahforum,
-      veteriners,
-      jumlahKlinik,
-      pendingKlinik,
-      approvedKlinik,
-      canceledKlinik,
-      error,
-      fetchVeteriners,
-    } = useDashboard();
-
+    const { Klinik, error, loading, fetchKlinik } = useKlinik();
     return {
-      jumlahforum,
-      veteriners,
-      jumlahKlinik,
-      pendingKlinik,
-      approvedKlinik,
-      canceledKlinik,
+      Klinik,
       error,
-      fetchVeteriners,
+      loading,
+      fetchKlinik,
     };
   },
 };

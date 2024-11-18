@@ -50,6 +50,7 @@ export function useQueue() {
 
       if (response.data && Array.isArray(response.data.data)) {
         Queue.value = response.data.data;
+        console.log(response)
         totalItems.value = response.data.total;
       } else {
         throw new Error("Unexpected response format");

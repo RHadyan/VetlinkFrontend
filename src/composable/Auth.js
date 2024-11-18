@@ -34,10 +34,15 @@ export function useAuth() {
   function logout() {
     const token = localStorage.getItem("authToken");
     const role = localStorage.getItem("userRole");
+    const status = localStorage.getItem("StorageStatus");
     console.log("Token yang dihapus:", token);
     console.log("role yang dihapus:", role);
+    console.log("adadadad:", status);
+
     localStorage.removeItem("authToken");
     localStorage.removeItem("userRole");
+    localStorage.removeItem("StorageStatus");
+
     router.push("/");
   }
 

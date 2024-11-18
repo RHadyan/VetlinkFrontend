@@ -173,7 +173,7 @@
             </div>
 
             <div class="my-5">
-              <v-radio-group v-model="statusAntri" inline>
+              <v-radio-group v-model="statusKlinik" inline>
                 <v-radio
                   label="Tolak"
                   value="rejected"
@@ -191,6 +191,37 @@
                   class="pe-3 rounded-md text-green"
                 ></v-radio>
               </v-radio-group>
+            </div>
+          </div>
+          <div
+            class="flex items-center gap-2 bg-white rounded-md pt-2 pb-2 ps-2"
+            style="box-shadow: 5px 10px 45px 0px rgba(0, 0, 0, 0.07)"
+          >
+            <div class="flex space-x-2 items-center">
+              <p class="text-[#3FA2F6] text-lg font-medium">Pesan</p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="3"
+                height="26"
+                viewBox="0 0 2 36"
+                fill="none"
+              >
+                <path
+                  d="M1 1L1 35"
+                  stroke="#3FA2F6"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div>
+              <textarea
+                v-model="pesan"
+                required
+                class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                placeholder="Pesan jika ditolak"
+                rows="4"
+              ></textarea>
             </div>
           </div>
 
@@ -264,7 +295,8 @@ export default {
     const idKlinik = ref(route.query.idKlinik || "Undefined or missing");
     console.log("ID Klinik:", idKlinik.value);
 
-    const statusAntri = ref(""); // Bind to v-radio-group
+    const statusKlinik = ref(""); // Bind to v-radio-group
+    const pesan = ref(""); // Bind to v-radio-group
 
     const downloadDocument = () => {
       try {
@@ -283,7 +315,7 @@ export default {
     };
 
     const submitApproval = async () => {
-      if (!statusAntri.value) {
+      if (!statusKlinik.value) {
         alert("Pilih status persetujuan terlebih dahulu!");
         return;
       }
@@ -292,7 +324,8 @@ export default {
         const token = localStorage.getItem("authToken");
 
         const formData = new FormData();
-        formData.append("register_status", statusAntri.value); // Add the selected status
+        formData.append("register_status", statusKlinik.value); // Add the selected status
+        formData.append("register_status_message", pesan.value); // Add the selected status
 
         // Make the POST request
         const response = await axios.post(
@@ -306,7 +339,7 @@ export default {
           }
         );
 
-        alert(`Status berhasil diperbarui menjadi: ${statusAntri.value}`);
+        alert(`Status berhasil diperbarui menjadi: ${statusKlinik.value}`);
         router.push("/hospital"); // Redirect after success
       } catch (err) {
         console.error(
@@ -344,12 +377,15 @@ export default {
       }
     };
 
-    watch(statusAntri, (newValue) => {
-      console.log("statusAntri changed to:", newValue);
+    watch(statusKlinik, (newValue) => {
+      console.log("statusKlinik changed to:", newValue);
+    });
+    watch(pesan, (newValue) => {
+      console.log("pesan changed to:", newValue);
     });
 
     return {
-      statusAntri,
+      statusKlinik,
       documentFromApi,
       deleteItem,
       downloadDocument,
@@ -357,6 +393,7 @@ export default {
       alamat,
       clinicImage,
       submitApproval,
+      pesan,
     };
   },
 };
