@@ -280,6 +280,7 @@ import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
 import router from "../router";
+import Swal from "sweetalert2";
 
 export default {
   setup() {
@@ -299,6 +300,7 @@ export default {
 
     const statusKlinik = ref(""); // Bind to v-radio-group
     const pesan = ref(""); // Bind to v-radio-group
+    const pesanSukses = ("Your Clinic is reviewed"); // Bind to v-radio-group
 
     const downloadDocument = () => {
       try {
@@ -326,8 +328,13 @@ export default {
         const token = localStorage.getItem("authToken");
 
         const formData = new FormData();
-        formData.append("register_status", statusKlinik.value); // Add the selected status
-        formData.append("register_status_message", pesan.value); // Add the selected status
+        formData.append("register_status", statusKlinik.value);
+        
+        if (statusKlinik.value === "rejected") {
+          formData.append("register_status_message", pesan.value); 
+        }else{
+          formData.append("register_status_message", pesanSukses); 
+        }
 
         // Make the POST request
         const response = await axios.post(
@@ -340,19 +347,23 @@ export default {
             },
           }
         );
-
-        alert(`Status berhasil diperbarui menjadi: ${statusKlinik.value}`);
+        Swal.fire({
+          title: "Berhasil!",
+          text: "",
+          icon: "success",
+        });
+        // alert(`Status berhasil diperbarui menjadi: ${statusKlinik.value}`);
         router.push("/hospital"); // Redirect after success
       } catch (err) {
         console.error(
           `Failed to update klinik status for ID: ${idKlinik.value}`,
           err.response?.data || err
         );
-        alert(
-          `Gagal memperbarui status klinik. Error: ${
-            err.response?.data?.message || "Unknown error"
-          }`
-        );
+        Swal.fire({
+          title: "Status Gagal diperbarui",
+          text: "",
+          icon: "error",
+        });
       }
     };
 

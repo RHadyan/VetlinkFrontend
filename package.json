@@ -13,6 +13,7 @@
     "@heroicons/vue": "^2.1.5",
     "@mdi/font": "^7.4.47",
     "axios": "^1.7.7",
+    "sweetalert2": "^11.14.5",
     "vetlink": "file:",
     "vite-plugin-vuetify": "^2.0.4",
     "vue": "^3.5.12",

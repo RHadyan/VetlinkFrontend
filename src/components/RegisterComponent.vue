@@ -60,7 +60,7 @@
           </div>
           <div>
             <input
-              type="text"
+              type="email"
               v-model="email"
               required
               class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
@@ -69,7 +69,7 @@
           </div>
           <div>
             <input
-              type="text"
+              type="number"
               v-model="phone"
               required
               class="w-full px-3 py-2 mt-1 border bg-white border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
@@ -140,11 +140,6 @@
                 />
               </svg>
             </button>
-
-            <!-- <div class="text-white">
-              <p>Latitude: {{ latitude }}</p>
-              <p>Longitude: {{ longitude }}</p>
-            </div> -->
           </div>
           <div>
             <input
@@ -287,7 +282,6 @@ export default {
       error,
       register,
     } = useRegister();
-
     // Define the method to get the precise location and set the latitude and longitude
     const getPreciseLocation = () => {
       if (navigator.geolocation) {

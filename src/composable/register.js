@@ -22,7 +22,7 @@ export function useRegister() {
   const clinic_image = ref(null); // Add clinic image field
   const document = ref(null); // Add document file field
   const error = ref(null);
-  const pesanStatus = ref("Klinik Mu Masih di review oleh Admin")
+
 
   const handleClinicImageUpload = (event) => {
     const file = event.target.files[0];
@@ -79,7 +79,7 @@ export function useRegister() {
 
       // Jika berhasil, arahkan ke halaman login atau dashboard
       if (response.status === 201) {
-        router.push("/login");
+        router.push("/");
       }
     } catch (err) {
       // Jika terjadi error, simpan pesan errornya

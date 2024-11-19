@@ -100,6 +100,7 @@ export default {
       navigateToDetail,
       changePage,
       deleteItem,
+      
       postDetail,
     } = useForum();
 

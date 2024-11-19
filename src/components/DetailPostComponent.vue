@@ -55,8 +55,7 @@
               />
             </div>
             <div v-if="postData">
-              <p class="font-bold text-3xl">{{ postData?.user?.name || 'Loading.....' }}</p>
-
+              <p class="font-bold text-3xl">{{ postData?.user?.username || 'Loading.....' }}</p>
             </div>
           </div>
           <div

@@ -93,6 +93,7 @@ import { useQueue } from "@/composable/daftarKunjungan";
 import { ref } from "vue";
 import { useRouter } from "vue-router"; // Import useRouter
 import apiClient from "@/api/axiosInstance";
+import Swal from "sweetalert2";
 
 export default {
   setup() {
@@ -140,8 +141,11 @@ export default {
             },
           }
         );
-
-        alert(`Status berhasil diperbarui menjadi: ${status}`);
+        Swal.fire({
+          title: `Status berhasil diperbarui`,
+          text: `${status}`,
+          icon: "success",
+        });
         await fetchQueue();
       } catch (err) {
         console.error(

@@ -93,30 +93,33 @@ export function useForum() {
     }
   };
   const postDetail = async (item) => {
-    try {
-      const token = localStorage.getItem("authToken");
+    
+      console.log(item)
+      try {
+        const token = localStorage.getItem("authToken");
 
-      const response = await apiClient.get(`admin/forum/${item.id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const detail = response.data.data;
-
-      if (detail) {
-        // Navigate to a detail page or set detail data for a modal
-        router.push({
-          name: "ForumDetail",
-          query: {
-            idPost: detail.id,
+        const response = await apiClient.get(`admin/forum/${item.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
         });
+
+        const detail = response.data.data;
+
+        if (detail) {
+          // Navigate to a detail page or set detail data for a modal
+          router.push({
+            name: "ForumDetail",
+            query: {
+              idPost: detail.id,
+            },
+          });
+        }
+      } catch (err) {
+        // console.error("Failed to fetch forum details:", err);
+        // alert("Failed to fetch details. Please try again later.");
       }
-    } catch (err) {
-      // console.error("Failed to fetch forum details:", err);
-      // alert("Failed to fetch details. Please try again later.");
-    }
+
   };
 
   // Fetch data when the component is mounted

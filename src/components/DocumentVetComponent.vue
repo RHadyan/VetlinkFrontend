@@ -124,13 +124,24 @@
             Lengkapi file persyaratan kembali jika diperlukan.
           </p>
         </div>
-        <div class="flex gap-2 mx-5 items-center">
-          <input
-            type="file"
-            @change="handleDocumentFileUpload"
-            class="block w-full text-black text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#B08BBB] file:text-white hover:file:bg-[#FFA33C]"
-          />
-        </div>
+        <form @submit.prevent="updateDocument">
+          <div class="flex gap-2 mx-5 items-center">
+            <input
+              type="file"
+              @change="handleDocumentFileUpload"
+              class="block w-full text-black text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#B08BBB] file:text-white hover:file:bg-[#FFA33C]"
+            />
+            <div class="flex justify-center">
+              <button
+                type="submit"
+                class="w-32 h-10 text-xl items-center flex justify-center font-medium text-white bg-[#FFA33C] rounded-full hover:bg-[#B08BBB] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                style="box-shadow: 5px 10px 45px 0px rgba(0, 0, 0, 0.1)"
+              >
+                Kirim
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -138,15 +149,75 @@
 
 <script>
 import { useKlinik } from "@/composable/statusKlinik";
+import { ref } from "vue";
+import router from "@/router";
+import apiClient from "@/api/axiosInstance";
+import Swal from "sweetalert2";
 
 export default {
   setup() {
     const { Klinik, error, loading, fetchKlinik } = useKlinik();
+    const document = ref(null); // Add document file field
+    const pesan = "Please wait for the admin to verify your clinic";
+
+    // Function to handle file upload
+    const handleDocumentFileUpload = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        document.value = file;
+      }
+    };
+
+    // Function to update document
+    const updateDocument = async () => {
+      error.value = null; // Clear previous errors, if any
+      if (!document.value) {
+        // Validasi untuk memastikan bahwa file sudah dipilih
+        console.log("Please select a document file to upload.");
+        error.value = "Please select a document file to upload.";
+        return;
+      }
+
+      try {
+        // Create form data object for sending the file
+        const formData = new FormData();
+        formData.append("document", document.value);
+        formData.append("register_status_message", pesan);
+
+        // Send registration data to the API using POST request
+        const response = await apiClient.post("veteriner/update", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        console.log(response);
+        // If successful, redirect to the main dashboard
+        if (response.status === 200) {
+          Swal.fire({
+            title: "Success!",
+            text: pesan,
+            icon: "success",
+          });
+          await fetchKlinik(); // Update Klinik state after successful update
+        }
+      } catch (err) {
+        // Handle errors and save the error message
+        if (err.response && err.response.data) {
+          error.value = err.response.data.message;
+        } else {
+          error.value = "Document update failed. Please try again.";
+        }
+        console.error("Document update failed:", error.value);
+      }
+    };
+
     return {
+      updateDocument,
       Klinik,
       error,
       loading,
       fetchKlinik,
+      handleDocumentFileUpload,
     };
   },
 };
