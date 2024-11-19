@@ -116,7 +116,8 @@
                 />
               </svg>
             </div>
-            <div>
+            <div class="flex">
+              <p class="align-content-center">Download dokumen</p>
               <v-btn variant="plain" @click="downloadDocument">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +152,7 @@
           </div>
 
           <div
-            class="items-center gap-2 bg-white rounded-md pt-2 pb-2 ps-2"
+            class="items-center gap-2 bg-white rounded-md pt-2 pb-0 ps-2"
             style="box-shadow: 5px 10px 45px 0px rgba(0, 0, 0, 0.07)"
           >
             <div class="items-center space-y-1">
@@ -193,28 +194,29 @@
               </v-radio-group>
             </div>
           </div>
+
           <div
-            class="flex items-center gap-2 bg-white rounded-md pt-2 pb-2 ps-2"
+            class="items-start gap-2 bg-white rounded-md p-2 w-full"
             style="box-shadow: 5px 10px 45px 0px rgba(0, 0, 0, 0.07)"
           >
-            <div class="flex space-x-2 items-center">
-              <p class="text-[#3FA2F6] text-lg font-medium">Pesan</p>
+            <div class="items-center space-y-1">
+              <p class="text-[#3FA2F6] text-lg ps-2 font-medium">Persetujuan</p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="3"
-                height="26"
-                viewBox="0 0 2 36"
+                width="127"
+                height="2"
+                viewBox="0 0 205 3"
                 fill="none"
               >
                 <path
-                  d="M1 1L1 35"
+                  d="M2 2L203 1.99998"
                   stroke="#3FA2F6"
-                  stroke-width="2"
+                  stroke-width="3"
                   stroke-linecap="round"
                 />
               </svg>
             </div>
-            <div>
+            <div class="flex-1">
               <textarea
                 v-model="pesan"
                 required
@@ -225,7 +227,7 @@
             </div>
           </div>
 
-          <div class="flex justify-end h-36 items-end">
+          <div class="flex justify-end h-12 items-end">
             <div class="flex items-center gap-4">
               <v-btn variant="plain" icon text @click="deleteItem()">
                 <svg
