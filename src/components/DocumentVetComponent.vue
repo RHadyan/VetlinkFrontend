@@ -1,10 +1,8 @@
 <template>
-  <div class="min-h-screen space-y-6">
-    <div
-      class="grid justify-center grid-cols-1 lg:grid-cols-2 xl:gap-20 md:gap-10"
-    >
+  <div class="w-full justify-items-center space-y-6">
+    <div class="grid grid-cols-1 xl:grid-cols-2 xl:gap-10 md:gap-10">
       <div
-        class="h-64 w-[450px] bg-white rounded-[20px] shadow-[20px_4px_35px_0px_rgba(0, 0, 0, 0.1)]"
+        class="h-64 md:w-[550px] sm:w-[350px] bg-white rounded-[20px] shadow-[20px_4px_35px_0px_rgba(0, 0, 0, 0.1)]"
       >
         <div class="h-64 text-center flex-1">
           <div class="flex justify-center gap-2 m-5">
@@ -50,7 +48,7 @@
         </div>
       </div>
       <div
-        class="h-64 w-[450px] bg-white rounded-[20px] shadow-[20px_4px_35px_0px_rgba(0, 0, 0, 0.1)]"
+        class="h-64 md:w-[550px] sm:w-[350px] bg-white rounded-[20px] shadow-[20px_4px_35px_0px_rgba(0, 0, 0, 0.1)]"
       >
         <div class="h-64 text-center flex-1">
           <div class="flex justify-center gap-2 m-5">
@@ -91,10 +89,10 @@
     </div>
 
     <div
-      class="flex justify-center items-center max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[1190px] shadow-[20px_4px_35px_0px_rgba(0, 0, 0, 0.09)]"
+      class="flex justify-center items-center max-w-[500px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[1190px] shadow-[20px_4px_35px_0px_rgba(0, 0, 0, 0.09)]"
     >
       <div
-        class="bg-white w-full h-32 rounded-[10px] shadow-[20px_4px_35px_0px_rgba(0, 0, 0, 0.1)]"
+        class="bg-white w-[1140px] h-32 rounded-[10px] shadow-[20px_4px_35px_0px_rgba(0, 0, 0, 0.1)]"
       >
         <div class="flex gap-2 m-5">
           <svg
