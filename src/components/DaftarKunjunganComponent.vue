@@ -43,11 +43,11 @@
 
             <!-- Slot for editable status -->
             <template v-slot:item.status="{ item }">
-              <div class="text-center">
+              <div class="flex justify-center">
                 <v-select
                   size="small"
                   v-model="item.status"
-                  :items="['finished', 'ongoing', 'canceled']"
+                  :items="['Finished', 'On going', 'Canceled']"
                   :color="getStatusColor(item.status)"
                   density="compact"
                   hide-details
@@ -56,10 +56,10 @@
                     width: '150px',
                     backgroundColor: getStatusColor(item.status),
                     color: '#fff',
-                    borderRadius: '8px',
-                    padding: '0' /* Hilangkan padding */,
-                    boxShadow: 'none' /* Hilangkan shadow bawaan */,
-                    border: 'none' /* Hilangkan border */,
+                    borderRadius: '5px',
+                    padding: '0',
+                    boxShadow: 'none',
+                    border: 'none',
                     transition: 'background-color 1s ease',
                   }"
                   @update:model-value="
