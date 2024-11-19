@@ -117,7 +117,8 @@ export default {
     const isApprove = ref(localStorage.getItem("StorageStatus") === "approved");
     // Function to check if the current route is active
     const isActiveRoute = (path) => route.path === path;
-
+    console.log(isApprove.value);
+    console.log(localStorage.getItem("StorageStatus"));
     // Function to handle logout
     const handleLogout = () => {
       logout();

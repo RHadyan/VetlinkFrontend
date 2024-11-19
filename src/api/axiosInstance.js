@@ -2,8 +2,7 @@ import axios from "axios";
 
 // Create an Axios instance
 const apiClient = axios.create({
-  baseURL:
-    "https://vetlink-edfsdff6e3e8bhcy.westindia-01.azurewebsites.net/api/", // Set the base URL
+  baseURL: "http://localhost:8000/api/", // Set the base URL
   headers: {
     "Content-Type": "application/json", // Default content type
   },
