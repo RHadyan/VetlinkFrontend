@@ -1,13 +1,21 @@
 <template>
-  <v-app>
+  <v-app class="w-full">
     <v-main>
       <div class="flex justify-center flex-grow">
         <div
           class="bg-white overflow-x-auto w-11/12 grid grid-cols-1 rounded-[20px] text-black shadow-[20px_4px_35px_0px_rgba(0,0,0,0.09)] px-4 py-1 overflow-hidden mt-4 mb-4"
         >
+          <v-text-field
+            v-model="search"
+            label="Search by Status or Hewan"
+            placeholder="Search by Status or Hewan"
+            variant="outlined"
+            class="rounded-[20px] mt-3"
+          ></v-text-field>
+
           <v-data-table
             :headers="headers"
-            :items="Queue"
+            :items="filteredQueue"
             v-model:page="currentPage"
             v-model:items-per-page="itemsPerPage"
             v-model:sort-by="sortBy"
@@ -33,23 +41,34 @@
               </thead>
             </template>
 
-            <!-- Slot for register_status -->
+            <!-- Slot for editable status -->
             <template v-slot:item.status="{ item }">
               <div class="text-center">
-                <v-chip
-                  :color="
-                    item.status === 'finished'
-                      ? 'green'
-                      : item.status === 'ongoing'
-                      ? 'orange'
-                      : 'red'
-                  "
-                  class="text-uppercase"
+                <v-select
                   size="small"
-                  label
+                  v-model="item.status"
+                  :items="['finished', 'ongoing', 'canceled']"
+                  :color="getStatusColor(item.status)"
+                  density="compact"
+                  hide-details
+                  class="custom-select"
+                  :style="{
+                    width: '150px',
+                    backgroundColor: getStatusColor(item.status),
+                    color: '#fff',
+                    borderRadius: '8px',
+                    padding: '0' /* Hilangkan padding */,
+                    boxShadow: 'none' /* Hilangkan shadow bawaan */,
+                    border: 'none' /* Hilangkan border */,
+                    transition: 'background-color 1s ease',
+                  }"
+                  @update:model-value="
+                    (newStatus) => {
+                      updateStatus(item.id, newStatus);
+                    }
+                  "
                 >
-                  {{ item.status  }}
-                </v-chip>
+                </v-select>
               </div>
             </template>
           </v-data-table>
@@ -73,7 +92,7 @@
 import { useQueue } from "@/composable/daftarKunjungan";
 import { ref } from "vue";
 import { useRouter } from "vue-router"; // Import useRouter
-// import { useQ } from "@/composable/vets.js";
+import apiClient from "@/api/axiosInstance";
 
 export default {
   setup() {
@@ -91,7 +110,6 @@ export default {
       filteredQueue,
       fetchQueue,
     } = useQueue();
-
     // Header for v-data-table
     const headers = [
       { title: "Nama Pemilik", value: "customer.name" },
@@ -101,10 +119,50 @@ export default {
       { title: "Status Kunjungan", value: "status" },
     ];
 
-    // Format time utility
-    const formatTime = (time) => {
-      if (!time) return "";
-      return time.slice(0, 5);
+    // Method to handle status update
+    const updateStatus = async (id, status) => {
+      console.log("ID yang diterima:", id);
+      console.log("Status yang diterima:", status);
+      try {
+        const token = localStorage.getItem("authToken");
+
+        const formData = new FormData();
+        formData.append("status", status); // Tambahkan status yang dipilih
+
+        // Kirim permintaan POST ke API
+        const response = await apiClient.post(
+          `veteriner/queue/${id}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        alert(`Status berhasil diperbarui menjadi: ${status}`);
+        await fetchQueue();
+      } catch (err) {
+        console.error(
+          `Gagal memperbarui status klinik untuk ID: ${id}`,
+          err.response?.data || err
+        );
+        alert(
+          `Gagal memperbarui status klinik. Error: ${
+            err.response?.data?.message || "Error tidak diketahui"
+          }`
+        );
+      }
+    };
+
+    // Method to get status color
+    const getStatusColor = (status) => {
+      return status === "finished"
+        ? "#5AAF51"
+        : status === "ongoing"
+        ? "#FFA33C"
+        : "#FF4E4E";
     };
 
     // Expose variables to the template
@@ -120,7 +178,9 @@ export default {
       search,
       filteredQueue,
       fetchQueue,
-      headers, // Include `headers` here to fix the warning
+      headers,
+      updateStatus,
+      getStatusColor,
     };
   },
 };
@@ -136,7 +196,6 @@ export default {
 .text-red-500 {
   color: red;
 }
-
 .hover\:bg-red-200:hover {
   background-color: #fecaca; /* Light red */
 }

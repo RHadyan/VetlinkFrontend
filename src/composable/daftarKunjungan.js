@@ -17,16 +17,13 @@ export function useQueue() {
 
   const filteredQueue = computed(() => {
     return Queue.value.filter((item) => {
-      const nameMatch = item.clinic_name
+      const statusMatch = item.status
         .toLowerCase()
         .includes(search.value.toLowerCase());
-      const kotaMatch = item.city
+      const petTypeMatch = item.pet.type
         .toLowerCase()
-        .includes(search.value.toLowerCase());
-      const statusMatch = item.register_status
-        .toLowerCase()
-        .includes(search.value.toLowerCase());
-      return nameMatch || statusMatch || kotaMatch;
+        .includes(search.value.toLowerCase()); // Menggunakan `type` sesuai data
+      return petTypeMatch || statusMatch;
     });
   });
 
@@ -50,13 +47,13 @@ export function useQueue() {
 
       if (response.data && Array.isArray(response.data.data)) {
         Queue.value = response.data.data;
-        console.log(response)
+        // console.log(response)
         totalItems.value = response.data.total;
       } else {
         throw new Error("Unexpected response format");
       }
     } catch (err) {
-      error.value = "GAGAL MENDAPATKAN DATA VETERINER";
+      error.value = "GAGAL MENDAPATKAN DATA QUEUE";
       console.error("Error fetching Queue: ", err);
     } finally {
       loading.value = false;

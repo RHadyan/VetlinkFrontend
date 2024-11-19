@@ -1,4 +1,4 @@
-import { ref, onMounted } from "vue";
+import { ref, onMounted,computed } from "vue";
 import apiClient from "@/api/axiosInstance";
 
 export function useKlinik() {
@@ -28,7 +28,7 @@ export function useKlinik() {
       loading.value = false;
     }
   };
-
+  
   onMounted(() => {
     fetchKlinik();
   });
