@@ -15,7 +15,7 @@ import HeadersVet from "@/components/Layouts/HeaderVet.vue";
       <HeadersVet />
 
       <!-- Scrollable DocumentVet -->
-      <div class="flex-1 overflow-y-auto justify-center flex py-4">
+      <div class="flex-1 overflow-y-auto justify-center flex p-4">
         <DocumentVetComponent />
       </div>
     </div>
