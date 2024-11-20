@@ -12,7 +12,7 @@ export function useProfile() {
     try {
       const token = localStorage.getItem("authToken"); // Mengambil token dari localStorage
       if (!token) {
-        router.push("/login");
+        router.push("/");
       }
 
       // Mengirim permintaan GET untuk mendapatkan profil pengguna
@@ -29,7 +29,7 @@ export function useProfile() {
 
       // Optional: Jika terjadi error autentikasi, bisa diarahkan ke halaman login
       if (err.response && err.response.status === 401) {
-        router.push("/login");
+        router.push("/");
       }
     }
   }

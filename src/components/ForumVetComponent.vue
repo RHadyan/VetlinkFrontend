@@ -212,7 +212,7 @@
 </template>
 
 <script>
-import { useForum } from "@/composable/tes";
+import { useForum } from "@/composable/forumVets";
 
 export default {
   name: "Forum",
