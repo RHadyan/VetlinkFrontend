@@ -13,24 +13,26 @@
 
         <!-- Grid card -->
         <div
-          class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 py-3 justify-items-center overflow-hidden"
+          class="grid grid-cols-1 w-full lg:grid-cols-2 xl:grid-cols-3 gap-5 py-3 justify-items-center overflow-hidden"
         >
           <div
             v-for="card in paginatedCards"
             :key="card.id"
-            class="rounded w-64 overflow-hidden shadow-md bg-white cursor-pointer transform transition-transform duration-300 hover:scale-105"
-            @click="postDetail(card)"
+            class="rounded w-72 overflow-hidden shadow-md bg-white cursor-pointer transform transition-transform duration-300 hover:scale-105"
           >
             <img
-              class="w-64 h-64 object-cover"
+              class="w-72 h-72 object-cover"
               :src="card.pet_image"
               :alt="card.username"
+              @click="postDetail(card)"
             />
-            <div class="flex font-poppins items-center justify-between m-3">
+            <div
+              class="flex font-poppins gap-3 items-center justify-between m-3"
+            >
               <div>
                 <img
-                  class="w-10 h-10 object-cover rounded-full"
-                  :src="card.user.photo"
+                  class="w-10 h-8 object-cover rounded-full mr-4"
+                  src="@/assets/images/defaultpfp.webp"
                   :alt="card.username"
                 />
               </div>
@@ -100,7 +102,7 @@ export default {
       navigateToDetail,
       changePage,
       deleteItem,
-      
+
       postDetail,
     } = useForum();
 

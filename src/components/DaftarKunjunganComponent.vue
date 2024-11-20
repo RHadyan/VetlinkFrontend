@@ -26,10 +26,10 @@
               type="date"
               class="rounded-[20px] mt-3"
             ></v-text-field>
-            <v-btn class="my-auto" color="primary" @click="exportToCSV"
+            <v-btn class="my-auto " color="csv" @click="exportToCSV"
               >Export to CSV</v-btn
             >
-            <v-btn class="my-auto" color="secondary" @click="exportToPDF"
+            <v-btn class="my-auto" color="pdf" @click="exportToPDF"
               >Export to PDF</v-btn
             >
           </div>
@@ -236,7 +236,7 @@ export default {
     // Method to export data to PDF
     const exportToPDF = () => {
       const doc = new jsPDF();
-      doc.text("Queue Data", 10, 10);
+      doc.text("Data Antrian", 10, 10);
 
       const tableData = filteredQueue.value.map((item) => [
         item.customer.name,

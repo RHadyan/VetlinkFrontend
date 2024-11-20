@@ -26,6 +26,8 @@ export default createVuetify({
           warning: "#fb8c00", // Oranye gelap untuk status peringatan
           background: "#f5f5f5", // Abu-abu terang untuk latar belakang
           surface: "#ffffff", // Putih untuk permukaan
+          csv: "#FFA33C",
+          pdf: "#B08BBB",
         },
       },
       dark: {
@@ -39,6 +41,8 @@ export default createVuetify({
           warning: "#ffa726", // Oranye untuk status peringatan
           background: "#121212", // Hitam untuk latar belakang
           surface: "#1e1e1e", // Abu-abu sangat gelap untuk permukaan
+          csv: "#FFA33C",
+          pdf: "#B08BBB",
         },
       },
     },

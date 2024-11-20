@@ -34,7 +34,7 @@
           class="rounded-xl"
         >
           <img
-           :src="postData.pet_image"
+            :src="postData.pet_image"
             alt="Post Pict"
             style="width: 100%; height: 100%; object-fit: cover"
           />
@@ -49,38 +49,15 @@
               style="width: 80px; height: 80px; overflow: hidden"
             >
               <img
-                src="@/assets/images/cat1.png"
+                src="@/assets/images/defaultpfp.webp"
                 alt="Post Pict"
                 style="width: 100%; height: 100%; object-fit: cover"
               />
             </div>
             <div v-if="postData">
-              <p class="font-bold text-3xl">{{ postData?.user?.username || 'Loading.....' }}</p>
-            </div>
-          </div>
-          <div
-            class="flex items-center gap-2 bg-white rounded-md pt-2 pb-2 ps-2"
-            style="box-shadow: 5px 10px 45px 0px rgba(0, 0, 0, 0.07)"
-          >
-            <div class="flex space-x-2 items-center">
-              <p class="text-[#3FA2F6] text-xl font-medium">Lokasi</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="3"
-                height="26"
-                viewBox="0 0 2 36"
-                fill="none"
-              >
-                <path
-                  d="M1 1L1 35"
-                  stroke="#3FA2F6"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </div>
-            <div>
-              <p class="font-normal text-base">{{ postData.last_seen }}</p>
+              <p class="font-bold text-3xl">
+                {{ postData?.user?.username || "Loading....." }}
+              </p>
             </div>
           </div>
           <div
@@ -106,7 +83,7 @@
             </div>
             <div class="mt-2">
               <p class="font-normal text-base text-pretty">
-               {{ postData.title }}
+                {{ postData.title }}
               </p>
             </div>
           </div>
@@ -134,7 +111,9 @@
               </svg>
             </div>
             <div class="mt-2">
-              <p class="font-light text-base text-pretty">{{ postData.last_seen }}</p>
+              <p class="font-light text-base text-pretty">
+                {{ postData.last_seen }}
+              </p>
             </div>
           </div>
           <div
@@ -208,7 +187,6 @@ import axios from "axios";
 import router from "../router";
 import apiClient from "@/api/axiosInstance";
 
-
 export default {
   setup() {
     const route = useRoute();
@@ -226,14 +204,11 @@ export default {
         const token = localStorage.getItem("authToken");
 
         // Make API call with Axios, including Bearer token in headers
-        const response = await apiClient.get(
-          `admin/forum/${idPost.value}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await apiClient.get(`admin/forum/${idPost.value}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         // Save the response data to the postData ref
         postData.value = response.data.data;
