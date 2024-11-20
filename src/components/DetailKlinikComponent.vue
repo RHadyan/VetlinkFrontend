@@ -281,6 +281,7 @@ import { useRoute } from "vue-router";
 import axios from "axios";
 import router from "../router";
 import Swal from "sweetalert2";
+import apiClient from "@/api/axiosInstance";
 
 export default {
   setup() {
@@ -337,8 +338,8 @@ export default {
         }
 
         // Make the POST request
-        const response = await axios.post(
-          `http://localhost:8000/api/admin/veteriner/${idKlinik.value}`,
+        const response = await apiClient.post(
+          `admin/veteriner/${idKlinik.value}`,
           formData,
           {
             headers: {
@@ -372,8 +373,8 @@ export default {
         try {
           const token = localStorage.getItem("authToken");
 
-          await axios.delete(
-            `http://localhost:8000/api/admin/veteriner/${idKlinik.value}`,
+          await apiClient.delete(
+            `admin/veteriner/${idKlinik.value}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
