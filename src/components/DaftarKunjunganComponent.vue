@@ -47,7 +47,7 @@
                 <v-select
                   size="small"
                   v-model="item.status"
-                  :items="['Finished', 'On going', 'Canceled']"
+                  :items="['finished', 'ongoing', 'canceled', 'pending']"
                   :color="getStatusColor(item.status)"
                   density="compact"
                   hide-details

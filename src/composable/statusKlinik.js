@@ -20,7 +20,7 @@ export function useKlinik() {
       //   taroh disini
       localStorage.setItem("StorageStatus", response.data.data.register_status);
       Klinik.value = response.data.data;
-      //   console.log(Klinik.value);
+        // console.log(Klinik.value);
     } catch (err) {
       error.value = "GAGAL MENDAPATKAN DATA";
       console.error("Error fetching Klinik: ", err);

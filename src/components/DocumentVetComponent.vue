@@ -92,13 +92,18 @@
       class="flex justify-center items-center max-w-[500px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[1190px] shadow-[20px_4px_35px_0px_rgba(0, 0, 0, 0.09)]"
     >
       <div
-        class="bg-white w-[1140px] h-32 rounded-[10px] shadow-[20px_4px_35px_0px_rgba(0, 0, 0, 0.1)]"
+        class="bg-white w-[1140px] h-40 rounded-[10px] shadow-[20px_4px_35px_0px_rgba(0, 0, 0, 0.1)]"
       >
+        <div class="px-6 pt-4">
+          <p class="font-medium text-xl text-[#3FA2F6]">
+            {{ Klinik.clinic_name }}
+          </p>
+        </div>
         <div class="flex gap-2 m-5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="22"
+            width="15"
+            height="15"
             viewBox="0 0 30 30"
             fill="none"
           >
@@ -116,7 +121,7 @@
             />
           </svg>
           <p
-            class="align-content-center lg:text-sm sm:text-sm font-normal text-black"
+            class="align-content-center lg:text-xs sm:text-xs font-normal text-black"
             style="font-family: 'Poppins', sans-serif"
           >
             Lengkapi file persyaratan kembali jika diperlukan.
